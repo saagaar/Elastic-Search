@@ -33,7 +33,7 @@ services:
         networks:
             - nginx-php81-mysql8
         depends_on:
-            - mysql8-service
+            - mysql
 
     # mysql
     mysql:

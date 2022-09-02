@@ -2,8 +2,13 @@ $(function(){
 $('#submitImageUrl').click(function(e){
 	e.preventDefault();
 	var _imgExts = ["jpg", "jpeg", "png", "gif", "ico"];
-	let url=$(this).parents('.checkImageURL').find('#image_url').val();
-	if(url!=undefined && isExtension(url.split('.').pop(),_imgExts)){
+
+	let url=$(this).parents('.checkImageURL').find('input[name="image_url"]').val();
+	alert(url);
+	
+	let extn=url.split('.').pop();
+
+	if(isExtension(extn,_imgExts)){
 		$('#imagePreviewParent').html('');
 		$('#imagePreviewParent').append('<img className="img-fluid" src="'+url+'">')
 	}

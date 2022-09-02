@@ -28,8 +28,6 @@ class __TwigTemplate_6b0f75fe8027f7c6f9bb3d6b16295436 extends Template
 
         $this->blocks = [
             'title' => [$this, 'block_title'],
-            'stylesheets' => [$this, 'block_stylesheets'],
-            'javascripts' => [$this, 'block_javascripts'],
             'header' => [$this, 'block_header'],
             'body' => [$this, 'block_body'],
             'footer' => [$this, 'block_footer'],
@@ -55,13 +53,8 @@ class __TwigTemplate_6b0f75fe8027f7c6f9bb3d6b16295436 extends Template
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
         <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>\">
-        ";
-        // line 7
-        $this->displayBlock('stylesheets', $context, $blocks);
-        // line 8
-        echo "        ";
-        $this->displayBlock('javascripts', $context, $blocks);
-        // line 9
+     ";
+        // line 11
         echo "        <script src=\"https://cdn.tailwindcss.com\"></script>
            <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx\" crossorigin=\"anonymous\">
 
@@ -73,19 +66,19 @@ class __TwigTemplate_6b0f75fe8027f7c6f9bb3d6b16295436 extends Template
     </head>
     <body class=\"bg-gray-100 h-screen antialiased leading-none font-sans\">
             ";
-        // line 19
+        // line 21
         $this->displayBlock('header', $context, $blocks);
-        // line 109
-        echo "
-            ";
-        // line 110
-        $this->displayBlock('body', $context, $blocks);
         // line 111
         echo "
             ";
         // line 112
+        $this->displayBlock('body', $context, $blocks);
+        // line 113
+        echo "
+            ";
+        // line 114
         $this->displayBlock('footer', $context, $blocks);
-        // line 119
+        // line 121
         echo "    </body>
 </html>";
         
@@ -115,47 +108,7 @@ class __TwigTemplate_6b0f75fe8027f7c6f9bb3d6b16295436 extends Template
 
     }
 
-    // line 7
-    public function block_stylesheets($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
-
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
-
-        echo "<link rel=\"stylesheet\" href=\"";
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/app.css"), "html", null, true);
-        echo "\">";
-        
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
-
-        
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
-
-    }
-
-    // line 8
-    public function block_javascripts($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
-
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
-
-        echo twig_escape_filter($this->env, $this->env->getFunction('encore_entry_script_tags')->getCallable()("app"), "html", null, true);
-        
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
-
-        
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
-
-    }
-
-    // line 19
+    // line 21
     public function block_header($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -165,7 +118,7 @@ class __TwigTemplate_6b0f75fe8027f7c6f9bb3d6b16295436 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "header"));
 
-        // line 20
+        // line 22
         echo "                <header>
                     <nav
                             class=\"flex items-center justify-between flex-wrap p-6 fixed w-full z-10 top-0\"
@@ -179,7 +132,7 @@ class __TwigTemplate_6b0f75fe8027f7c6f9bb3d6b16295436 extends Template
                                     href=\"/\">
             <span class=\"text-2xl pl-2 font-extrabold\">
                ";
-        // line 33
+        // line 35
         echo "            </span>
                             </a>
                         </div>
@@ -247,13 +200,13 @@ class __TwigTemplate_6b0f75fe8027f7c6f9bb3d6b16295436 extends Template
                                     <a
                                             class=\"inline-block text-gray-300 no-underline hover:text-gray-200 hover:text-underline py-2 px-4\"
                                             href=\"/";
-        // line 99
-        echo ((twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 99, $this->source); })()), "user", [], "any", false, false, false, 99)) ? ("logout") : ("login"));
+        // line 101
+        echo ((twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 101, $this->source); })()), "user", [], "any", false, false, false, 101)) ? ("logout") : ("login"));
         echo "\"
                                             @click=\"isOpen = false\">
                                         ";
-        // line 101
-        echo ((twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 101, $this->source); })()), "user", [], "any", false, false, false, 101)) ? ("Logout") : ("Login"));
+        // line 103
+        echo ((twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 103, $this->source); })()), "user", [], "any", false, false, false, 103)) ? ("Logout") : ("Login"));
         echo "
                                     </a>
                                 </li>
@@ -270,7 +223,7 @@ class __TwigTemplate_6b0f75fe8027f7c6f9bb3d6b16295436 extends Template
 
     }
 
-    // line 110
+    // line 112
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -288,7 +241,7 @@ class __TwigTemplate_6b0f75fe8027f7c6f9bb3d6b16295436 extends Template
 
     }
 
-    // line 112
+    // line 114
     public function block_footer($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -298,7 +251,7 @@ class __TwigTemplate_6b0f75fe8027f7c6f9bb3d6b16295436 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "footer"));
 
-        // line 113
+        // line 115
         echo "                <footer class=\"bg-gray-600 py-6 mt-20\">
                     <p class=\"w-25 w-4/5 text-center pb-3 m-auto text-base text-gray-100 pt-6\">
                         Copyright 2022 Sagar Chapagain. All Rights Reserved
@@ -320,7 +273,7 @@ class __TwigTemplate_6b0f75fe8027f7c6f9bb3d6b16295436 extends Template
 
     public function getDebugInfo()
     {
-        return array (  302 => 113,  292 => 112,  274 => 110,  256 => 101,  251 => 99,  183 => 33,  169 => 20,  159 => 19,  140 => 8,  119 => 7,  100 => 5,  89 => 119,  87 => 112,  84 => 111,  82 => 110,  79 => 109,  77 => 19,  65 => 9,  62 => 8,  60 => 7,  55 => 5,  49 => 1,);
+        return array (  255 => 115,  245 => 114,  227 => 112,  209 => 103,  204 => 101,  136 => 35,  122 => 22,  112 => 21,  93 => 5,  82 => 121,  80 => 114,  77 => 113,  75 => 112,  72 => 111,  70 => 21,  58 => 11,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -331,8 +284,10 @@ class __TwigTemplate_6b0f75fe8027f7c6f9bb3d6b16295436 extends Template
         <meta charset=\"UTF-8\">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>\">
-        {% block stylesheets %}<link rel=\"stylesheet\" href=\"{{ asset('build/app.css') }}\">{% endblock %}
+     {#   {% block stylesheets %}<link rel=\"stylesheet\" href=\"{{ asset('build/app.css') }}\">{% endblock %}
         {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
+
+    #}
         <script src=\"https://cdn.tailwindcss.com\"></script>
            <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx\" crossorigin=\"anonymous\">
 

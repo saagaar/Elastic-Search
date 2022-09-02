@@ -745,15 +745,6 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
-        'symfony/webpack-encore-bundle' => array(
-            'pretty_version' => 'v1.15.1',
-            'version' => '1.15.1.0',
-            'reference' => '718673b1e758533614190ae74d07305a72bc66a9',
-            'type' => 'symfony-bundle',
-            'install_path' => __DIR__ . '/../symfony/webpack-encore-bundle',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'symfony/yaml' => array(
             'pretty_version' => 'v6.1.4',
             'version' => '6.1.4.0',

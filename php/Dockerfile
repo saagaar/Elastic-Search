@@ -35,5 +35,5 @@ WORKDIR /var/www/symfony
 # WORKDIR /var/www/symfony
 # copy  app/package.json /var/www/symfony/package.json
 # RUN npm install
-# RUN npm run build
-# CMD ["npm", "run", "serve"]
+# RUN encore yarn build
+# CMD ["npm", "run", "dev"]

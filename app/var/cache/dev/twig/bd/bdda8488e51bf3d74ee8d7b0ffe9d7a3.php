@@ -177,7 +177,10 @@ body
 \t\t\t\t\t\t    <path d=\"M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z\"/>
 \t\t\t\t\t\t  </symbol>
 \t\t\t\t\t\t</svg>
-\t\t\t\t\t\t\t<form method=\"post\">
+\t\t\t\t\t\t ";
+        // line 95
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["uploadImage"]) || array_key_exists("uploadImage", $context) ? $context["uploadImage"] : (function () { throw new RuntimeError('Variable "uploadImage" does not exist.', 95, $this->source); })()), 'form_start');
+        echo "
 \t\t\t\t\t\t<div class=\"row\">
 \t\t\t\t\t  \t\t<div id=\"wrapper col-md-12\">
 \t\t\t\t\t  \t\t\t<div class=\"alert alert-info alert-dismissible fade show\" role=\"alert\">
@@ -187,10 +190,14 @@ body
 \t\t\t\t\t\t\t\t \t<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
 \t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t<div class=\"row mt-2\">
-\t\t\t\t\t\t\t\t\t  <div class=\"col-sm-12 col-md-6 col-lg-6 mx-auto\">
+\t\t\t\t\t\t\t\t\t  <div class=\"col-sm-12 col-md-6 col-lg-6 mx-auto checkImageURL\">
 \t\t\t\t\t\t\t\t\t\t  \t<div class=\"row\">
 \t\t\t\t\t\t\t\t\t\t\t  \t <div class=\"col-md-8\">
-\t\t\t\t\t\t\t\t\t\t\t \t  \t<input type=\"text\" class=\"form-control\" name=\"img_url\" placeholder=\"Enter Image URL\">
+\t\t\t\t\t\t\t\t\t\t\t \t  \t";
+        // line 109
+        echo "\t\t\t\t\t\t\t\t\t\t\t \t  \t";
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["uploadImage"]) || array_key_exists("uploadImage", $context) ? $context["uploadImage"] : (function () { throw new RuntimeError('Variable "uploadImage" does not exist.', 109, $this->source); })()), "image_url", [], "any", false, false, false, 109), 'row', ["id" => "image_url"]);
+        echo "
 \t\t\t\t\t\t\t\t\t\t\t \t</div>
 \t\t\t\t\t\t\t\t\t\t\t \t<div class=\"col-md-4\">
 \t\t\t\t\t\t\t\t\t\t\t\t  <div id=\"text_div\">
@@ -210,9 +217,13 @@ body
 \t\t\t\t\t\t\t\t\t  <div class=\"col-sm-12 col-md-6 col-lg-6 mx-auto\">
 \t\t\t\t\t\t\t\t\t     \t<div class=\"form-group\">
 \t\t\t\t\t\t\t                    <label for=\"tags\">Tags</label>
-\t\t\t\t\t\t\t                    <select multiple=\"multiple\" class=\" js-example-basic-multiple form-control\"  name=\"tags[]\" id=\"tags\">
-\t\t\t\t\t\t                     \t</select>
-\t\t\t\t\t\t\t\t\t    \t</div>
+\t\t\t\t\t\t\t                   ";
+        // line 129
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["uploadImage"]) || array_key_exists("uploadImage", $context) ? $context["uploadImage"] : (function () { throw new RuntimeError('Variable "uploadImage" does not exist.', 129, $this->source); })()), "tags", [], "any", false, false, false, 129), 'row');
+        echo "
+\t\t\t\t\t\t\t                  ";
+        // line 132
+        echo "\t\t\t\t\t\t\t\t\t    \t</div>
 \t\t\t\t\t\t\t\t\t    </div>
 \t\t\t\t\t\t\t\t </div>
 \t\t\t\t\t\t\t\t <div class=\"row mt-2\">
@@ -220,8 +231,11 @@ body
 \t\t\t\t\t\t\t\t\t    
 \t\t\t\t\t\t\t\t\t     <div class=\"form-group\">
 \t\t\t\t\t\t                  <label for=\"provider\">Provider </label>
-\t\t\t\t\t\t                  <select class=\" select2-single-tags form-control\"  name=\"provider\" id=\"provider\">
-\t\t\t\t\t\t                   </select>
+\t\t\t\t\t\t               ";
+        // line 143
+        echo "\t\t\t\t\t\t                   ";
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["uploadImage"]) || array_key_exists("uploadImage", $context) ? $context["uploadImage"] : (function () { throw new RuntimeError('Variable "uploadImage" does not exist.', 143, $this->source); })()), "provider", [], "any", false, false, false, 143), 'row');
+        echo "
 \t\t\t\t\t\t\t\t\t    </div>
 \t\t\t\t\t\t\t\t\t    </div>
 \t\t\t\t\t\t\t\t </div>
@@ -232,15 +246,18 @@ body
 \t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</div>
-\t\t\t\t \t</form>
+\t\t\t\t   ";
+        // line 154
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["uploadImage"]) || array_key_exists("uploadImage", $context) ? $context["uploadImage"] : (function () { throw new RuntimeError('Variable "uploadImage" does not exist.', 154, $this->source); })()), 'form_end');
+        echo "
 \t\t\t\t  </div>
 \t\t\t\t</div>
       </div>
       
       <script type=\"text/javascript\">
       let url='";
-        // line 156
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 156, $this->source); })()), "request", [], "any", false, false, false, 156), "baseUrl", [], "any", false, false, false, 156), "html", null, true);
+        // line 160
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 160, $this->source); })()), "request", [], "any", false, false, false, 160), "baseUrl", [], "any", false, false, false, 160), "html", null, true);
         echo "';
       </script>
 ";
@@ -264,7 +281,7 @@ body
 
     public function getDebugInfo()
     {
-        return array (  243 => 156,  159 => 75,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  260 => 160,  251 => 154,  236 => 143,  226 => 132,  222 => 129,  198 => 109,  182 => 95,  159 => 75,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -363,7 +380,7 @@ body
 \t\t\t\t\t\t    <path d=\"M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z\"/>
 \t\t\t\t\t\t  </symbol>
 \t\t\t\t\t\t</svg>
-\t\t\t\t\t\t\t<form method=\"post\">
+\t\t\t\t\t\t {{ form_start(uploadImage) }}
 \t\t\t\t\t\t<div class=\"row\">
 \t\t\t\t\t  \t\t<div id=\"wrapper col-md-12\">
 \t\t\t\t\t  \t\t\t<div class=\"alert alert-info alert-dismissible fade show\" role=\"alert\">
@@ -373,10 +390,11 @@ body
 \t\t\t\t\t\t\t\t \t<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
 \t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t<div class=\"row mt-2\">
-\t\t\t\t\t\t\t\t\t  <div class=\"col-sm-12 col-md-6 col-lg-6 mx-auto\">
+\t\t\t\t\t\t\t\t\t  <div class=\"col-sm-12 col-md-6 col-lg-6 mx-auto checkImageURL\">
 \t\t\t\t\t\t\t\t\t\t  \t<div class=\"row\">
 \t\t\t\t\t\t\t\t\t\t\t  \t <div class=\"col-md-8\">
-\t\t\t\t\t\t\t\t\t\t\t \t  \t<input type=\"text\" class=\"form-control\" name=\"img_url\" placeholder=\"Enter Image URL\">
+\t\t\t\t\t\t\t\t\t\t\t \t  \t{#<input type=\"text\" class=\"\" name=\"image_url\" placeholder=\"Enter Image URL\">#}
+\t\t\t\t\t\t\t\t\t\t\t \t  \t{{ form_row(uploadImage.image_url,{'id':'image_url'}) }}
 \t\t\t\t\t\t\t\t\t\t\t \t</div>
 \t\t\t\t\t\t\t\t\t\t\t \t<div class=\"col-md-4\">
 \t\t\t\t\t\t\t\t\t\t\t\t  <div id=\"text_div\">
@@ -396,8 +414,9 @@ body
 \t\t\t\t\t\t\t\t\t  <div class=\"col-sm-12 col-md-6 col-lg-6 mx-auto\">
 \t\t\t\t\t\t\t\t\t     \t<div class=\"form-group\">
 \t\t\t\t\t\t\t                    <label for=\"tags\">Tags</label>
-\t\t\t\t\t\t\t                    <select multiple=\"multiple\" class=\" js-example-basic-multiple form-control\"  name=\"tags[]\" id=\"tags\">
-\t\t\t\t\t\t                     \t</select>
+\t\t\t\t\t\t\t                   {{ form_row(uploadImage.tags) }}
+\t\t\t\t\t\t\t                  {#  <select multiple=\"multiple\" class=\" js-example-basic-multiple form-control\"  name=\"tags[]\" id=\"tags\">
+\t\t\t\t\t\t                     \t</select> #}
 \t\t\t\t\t\t\t\t\t    \t</div>
 \t\t\t\t\t\t\t\t\t    </div>
 \t\t\t\t\t\t\t\t </div>
@@ -406,8 +425,10 @@ body
 \t\t\t\t\t\t\t\t\t    
 \t\t\t\t\t\t\t\t\t     <div class=\"form-group\">
 \t\t\t\t\t\t                  <label for=\"provider\">Provider </label>
-\t\t\t\t\t\t                  <select class=\" select2-single-tags form-control\"  name=\"provider\" id=\"provider\">
+\t\t\t\t\t\t               {#   <select class=\" select2-single-tags form-control\"  name=\"provider\" id=\"provider\">
 \t\t\t\t\t\t                   </select>
+\t\t\t\t\t\t                   #}
+\t\t\t\t\t\t                   {{ form_row(uploadImage.provider) }}
 \t\t\t\t\t\t\t\t\t    </div>
 \t\t\t\t\t\t\t\t\t    </div>
 \t\t\t\t\t\t\t\t </div>
@@ -418,7 +439,7 @@ body
 \t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</div>
-\t\t\t\t \t</form>
+\t\t\t\t   {{ form_end(uploadImage) }}
 \t\t\t\t  </div>
 \t\t\t\t</div>
       </div>
