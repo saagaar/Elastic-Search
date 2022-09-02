@@ -1,0 +1,94 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Manual Upload !{% endblock %}
+
+{% block body %}
+<style>
+body
+{
+ margin:0 auto;
+ padding:0px;
+ text-align:center;
+ width:100%;
+ font-family: "Myriad Pro","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+ background-color:#34495E;
+}
+#wrapper
+{
+ margin:0 auto;
+ padding:0px;
+ text-align:center;
+ width:995px;
+ min-height:200px;
+}
+#wrapper h1
+{
+ margin-top:50px;
+ font-size:45px;
+ color:#FDF2E9;
+}
+#wrapper h1 p
+{
+ font-size:18px;
+}
+#text_div input[type="text"]
+{
+ width:300px;
+ height:35px;
+ padding:10px;
+ border:1px solid #a5ccba;  
+}
+#text_div input[type="submit"]
+{
+ width:100px;
+ height:35px;
+ margin-top:5px;
+ background:none;
+ border:1px solid #d5e7e7;
+ color:grey;
+ font-weight:bold;
+}
+#text_div img
+{
+ width:200px;
+}
+</style>
+
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-5 fw-normal">Direct Image Upload </h1>
+      <p class="fs-5 text-muted">Upload image to make it available to the users. </p>
+    </div>
+ <div class="col-12">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+             <ul class="nav nav-tabs" id="myTab" role="tablist">
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link " id="home-tab"  href="{{path('image_upload_url')}}">Upload By URL</a>
+				  </li>
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link active" href="#" >Upload File</a>
+				  </li>
+				 
+				</ul>
+          </div>
+          <div class="card-body">
+            <div class="tab-content" id="myTabContent">
+					  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+					  		<div id="wrapper">
+								<div id="text_div">
+								 <form method="post" action="upload_image.php">
+								  <input type="text" name="img_url" placeholder="Enter Image URL">
+								  <input type="submit" name="get_image" value="Submit">
+								 </form>
+								</div>
+							</div>
+					  </div>
+					  <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
+					</div>
+          </div>
+        </div>
+      </div>
+
+
+
+{% endblock %}
