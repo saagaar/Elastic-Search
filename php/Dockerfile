@@ -24,9 +24,15 @@ RUN docker-php-ext-install \
     pdo pdo_mysql zip xsl gd intl opcache exif mbstring
 
 
-
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN curl -sS https://get.symfony.com/cli/installer | bash
 WORKDIR /var/www/symfony
 
+# Node
+# FROM node:16 As build
+# WORKDIR /var/www/symfony
+# copy  app/package.json /var/www/symfony/package.json
+# RUN npm install
+# RUN npm run build
+# CMD ["npm", "run", "serve"]
