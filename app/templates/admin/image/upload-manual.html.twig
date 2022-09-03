@@ -89,18 +89,13 @@ body
 						 {{ form_start(uploadImage) }}
 						<div class="row">
 					  		<div id="wrapper col-md-12">
-					  			<div class="alert alert-info alert-dismissible fade show" role="alert">
-								   <div>
-								  	<strong>Info!</strong> Please use full Absolute image URL to import. (Remove Query Strings if any )
-								   </div>
-								 	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-								</div>
+					  			
 								<div class="row mt-2">
 									  <div class="col-sm-12 col-md-6 col-lg-6 mx-auto checkImageURL">
 										  	<div class="row">
-											  	 <div class="col-md-8">
+											  	 <div class="col-md-12">
 											 	  	{#<input type="text" class="" name="image_url" placeholder="Enter Image URL">#}
-											 	  	{{ form_row(uploadImage.image_url,{'id':'image_url'}) }}
+											 	  	{{ form_row(uploadImage.image_attachment,{'id':'image_file'}) }}
 											 	</div>
 											 	
 											</div>

@@ -6,8 +6,13 @@ use App\Repository\ImagesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+
+
 
 #[ORM\Entity(repositoryClass: ImagesRepository::class)]
+#[ApiResource]
+
 class Images
 {
     #[ORM\Id]
@@ -69,7 +74,7 @@ class Images
     public function addTag(Tags $tag): self
     {
         if (!$this->tags->contains($tag)) {
-            $this->tags->add($tag);
+            $this->tags[]=($tag);
         }
 
         return $this;

@@ -55,7 +55,7 @@ class Tags
     public function addImage(Images $image): self
     {
         if (!$this->images->contains($image)) {
-            $this->images->add($image);
+            $this->images[]=($image);
             $image->addTag($this);
         }
 
