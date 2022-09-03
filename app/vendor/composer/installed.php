@@ -181,6 +181,33 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'elasticsearch/elasticsearch' => array(
+            'pretty_version' => 'v7.17.0',
+            'version' => '7.17.0.0',
+            'reference' => '1890f9d7fde076b5a3ddcf579a802af05b2e781b',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../elasticsearch/elasticsearch',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'ezimuel/guzzlestreams' => array(
+            'pretty_version' => '3.0.1',
+            'version' => '3.0.1.0',
+            'reference' => 'abe3791d231167f14eb80d413420d1eab91163a8',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../ezimuel/guzzlestreams',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'ezimuel/ringphp' => array(
+            'pretty_version' => '1.2.0',
+            'version' => '1.2.0.0',
+            'reference' => '92b8161404ab1ad84059ebed41d9f757e897ce74',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../ezimuel/ringphp',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'friendsofphp/proxy-manager-lts' => array(
             'pretty_version' => 'v1.0.12',
             'version' => '1.0.12.0',
@@ -189,6 +216,21 @@
             'install_path' => __DIR__ . '/../friendsofphp/proxy-manager-lts',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'friendsofsymfony/elastica-bundle' => array(
+            'pretty_version' => 'v6.2.0',
+            'version' => '6.2.0.0',
+            'reference' => '4a3e03f79ae6688056c54eb516b6dc263feb329f',
+            'type' => 'symfony-bundle',
+            'install_path' => __DIR__ . '/../friendsofsymfony/elastica-bundle',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'guzzlehttp/ringphp' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.2.0',
+            ),
         ),
         'laminas/laminas-code' => array(
             'pretty_version' => '4.6.0',
@@ -208,10 +250,82 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
+        'nyholm/dsn' => array(
+            'pretty_version' => '2.0.1',
+            'version' => '2.0.1.0',
+            'reference' => '9445621b426bac8c0ca161db8cd700da00a4e618',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../nyholm/dsn',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'ocramius/proxy-manager' => array(
             'dev_requirement' => false,
             'replaced' => array(
                 0 => '^2.1',
+            ),
+        ),
+        'pagerfanta/core' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => 'v3.6.2',
+            ),
+        ),
+        'pagerfanta/doctrine-collections-adapter' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => 'v3.6.2',
+            ),
+        ),
+        'pagerfanta/doctrine-dbal-adapter' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => 'v3.6.2',
+            ),
+        ),
+        'pagerfanta/doctrine-mongodb-odm-adapter' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => 'v3.6.2',
+            ),
+        ),
+        'pagerfanta/doctrine-orm-adapter' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => 'v3.6.2',
+            ),
+        ),
+        'pagerfanta/doctrine-phpcr-odm-adapter' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => 'v3.6.2',
+            ),
+        ),
+        'pagerfanta/elastica-adapter' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => 'v3.6.2',
+            ),
+        ),
+        'pagerfanta/pagerfanta' => array(
+            'pretty_version' => 'v3.6.2',
+            'version' => '3.6.2.0',
+            'reference' => '0486e63edb74e55f85485c16c31decbf65f6e432',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../pagerfanta/pagerfanta',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'pagerfanta/solarium-adapter' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => 'v3.6.2',
+            ),
+        ),
+        'pagerfanta/twig' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => 'v3.6.2',
             ),
         ),
         'psr/cache' => array(
@@ -279,6 +393,24 @@
             'provided' => array(
                 0 => '1.0|2.0|3.0',
             ),
+        ),
+        'react/promise' => array(
+            'pretty_version' => 'v2.9.0',
+            'version' => '2.9.0.0',
+            'reference' => '234f8fd1023c9158e2314fa9d7d0e6a83db42910',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../react/promise',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'ruflin/elastica' => array(
+            'pretty_version' => '7.2.0',
+            'version' => '7.2.0.0',
+            'reference' => '8fe61767b604a10e40b0b59c9511c4317cae3cb8',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../ruflin/elastica',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'symfony/asset' => array(
             'pretty_version' => 'v6.1.0',

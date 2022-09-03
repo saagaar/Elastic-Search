@@ -193,11 +193,7 @@ body
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["uploadImage"]) || array_key_exists("uploadImage", $context) ? $context["uploadImage"] : (function () { throw new RuntimeError('Variable "uploadImage" does not exist.', 103, $this->source); })()), "image_url", [], "any", false, false, false, 103), 'row', ["id" => "image_url"]);
         echo "
 \t\t\t\t\t\t\t\t\t\t\t \t</div>
-\t\t\t\t\t\t\t\t\t\t\t \t<div class=\"col-md-4\">
-\t\t\t\t\t\t\t\t\t\t\t\t  <div id=\"text_div\">
-\t\t\t\t\t\t\t\t\t\t\t\t    \t<input type=\"submit\" name=\"get_image\" value=\"Preview\" id=\"submitImageUrl\">
-\t\t\t\t\t\t\t\t\t\t\t\t  </div>
-\t\t\t\t\t\t\t\t\t\t\t\t </div>
+\t\t\t\t\t\t\t\t\t\t\t \t
 \t\t\t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t\t </div>
 \t\t\t\t\t\t\t\t</div>
@@ -212,11 +208,11 @@ body
 \t\t\t\t\t\t\t\t\t     \t<div class=\"form-group\">
 \t\t\t\t\t\t\t                    <label for=\"tags\">Tags</label>
 \t\t\t\t\t\t\t                   ";
-        // line 123
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["uploadImage"]) || array_key_exists("uploadImage", $context) ? $context["uploadImage"] : (function () { throw new RuntimeError('Variable "uploadImage" does not exist.', 123, $this->source); })()), "tags", [], "any", false, false, false, 123), 'row');
+        // line 119
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["uploadImage"]) || array_key_exists("uploadImage", $context) ? $context["uploadImage"] : (function () { throw new RuntimeError('Variable "uploadImage" does not exist.', 119, $this->source); })()), "tags", [], "any", false, false, false, 119), 'row');
         echo "
 \t\t\t\t\t\t\t                  ";
-        // line 126
+        // line 122
         echo "\t\t\t\t\t\t\t\t\t    \t</div>
 \t\t\t\t\t\t\t\t\t    </div>
 \t\t\t\t\t\t\t\t </div>
@@ -226,9 +222,9 @@ body
 \t\t\t\t\t\t\t\t\t     <div class=\"form-group\">
 \t\t\t\t\t\t                  <label for=\"provider\">Provider </label>
 \t\t\t\t\t\t               ";
-        // line 137
+        // line 133
         echo "\t\t\t\t\t\t                   ";
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["uploadImage"]) || array_key_exists("uploadImage", $context) ? $context["uploadImage"] : (function () { throw new RuntimeError('Variable "uploadImage" does not exist.', 137, $this->source); })()), "provider", [], "any", false, false, false, 137), 'row');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["uploadImage"]) || array_key_exists("uploadImage", $context) ? $context["uploadImage"] : (function () { throw new RuntimeError('Variable "uploadImage" does not exist.', 133, $this->source); })()), "provider", [], "any", false, false, false, 133), 'row');
         echo "
 \t\t\t\t\t\t\t\t\t    </div>
 \t\t\t\t\t\t\t\t\t    </div>
@@ -241,8 +237,8 @@ body
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</div>
 \t\t\t\t   ";
-        // line 148
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["uploadImage"]) || array_key_exists("uploadImage", $context) ? $context["uploadImage"] : (function () { throw new RuntimeError('Variable "uploadImage" does not exist.', 148, $this->source); })()), 'form_end');
+        // line 144
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["uploadImage"]) || array_key_exists("uploadImage", $context) ? $context["uploadImage"] : (function () { throw new RuntimeError('Variable "uploadImage" does not exist.', 144, $this->source); })()), 'form_end');
         echo "
 \t\t\t\t  </div>
 \t\t\t\t</div>
@@ -271,7 +267,7 @@ body
 
     public function getDebugInfo()
     {
-        return array (  245 => 148,  230 => 137,  220 => 126,  216 => 123,  192 => 103,  176 => 89,  150 => 66,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  241 => 144,  226 => 133,  216 => 122,  212 => 119,  192 => 103,  176 => 89,  150 => 66,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -380,11 +376,7 @@ body
 \t\t\t\t\t\t\t\t\t\t\t \t  \t{#<input type=\"text\" class=\"\" name=\"image_url\" placeholder=\"Enter Image URL\">#}
 \t\t\t\t\t\t\t\t\t\t\t \t  \t{{ form_row(uploadImage.image_url,{'id':'image_url'}) }}
 \t\t\t\t\t\t\t\t\t\t\t \t</div>
-\t\t\t\t\t\t\t\t\t\t\t \t<div class=\"col-md-4\">
-\t\t\t\t\t\t\t\t\t\t\t\t  <div id=\"text_div\">
-\t\t\t\t\t\t\t\t\t\t\t\t    \t<input type=\"submit\" name=\"get_image\" value=\"Preview\" id=\"submitImageUrl\">
-\t\t\t\t\t\t\t\t\t\t\t\t  </div>
-\t\t\t\t\t\t\t\t\t\t\t\t </div>
+\t\t\t\t\t\t\t\t\t\t\t \t
 \t\t\t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t\t </div>
 \t\t\t\t\t\t\t\t</div>

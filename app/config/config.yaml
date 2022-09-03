@@ -1,0 +1,17 @@
+#app/config/config.yml
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        app:
+            tag:
+              persistance:
+                 driver:orm
+                 model:App\Entity\Images
+                 provider:~
+                 finder:~
+              properties:
+                tags:~
+                imageName:~
+                provider:~
+                                 
