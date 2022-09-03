@@ -207,7 +207,7 @@
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
     <parameter key="fos_elastica.property_accessor.magicCall">0</parameter>
     <parameter key="fos_elastica.property_accessor.throwExceptionOnInvalidIndex">0</parameter>
-    <parameter key="fos_elastica.default_index">app</parameter>
+    <parameter key="fos_elastica.default_index">images</parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
         <parameter>request</parameter>
@@ -2393,7 +2393,7 @@
       </call>
     </service>
     <service id="doctrine.dbal.default_connection.event_manager" class="Symfony\Bridge\Doctrine\ContainerAwareEventManager">
-      <argument type="service" id=".service_locator.QXcJQkF"/>
+      <argument type="service" id=".service_locator.4igpj6B"/>
       <argument type="collection">
         <argument>doctrine.orm.listeners.doctrine_dbal_cache_adapter_schema_subscriber</argument>
         <argument>doctrine.orm.listeners.doctrine_token_provider_schema_subscriber</argument>
@@ -2402,6 +2402,30 @@
             <argument>loadClassMetadata</argument>
           </argument>
           <argument>doctrine.orm.default_listeners.attach_entity_listeners</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>postPersist</argument>
+          </argument>
+          <argument>fos_elastica.listener.images</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>postUpdate</argument>
+          </argument>
+          <argument>fos_elastica.listener.images</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>preRemove</argument>
+          </argument>
+          <argument>fos_elastica.listener.images</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>postFlush</argument>
+          </argument>
+          <argument>fos_elastica.listener.images</argument>
         </argument>
       </argument>
     </service>
@@ -4071,7 +4095,13 @@
       <argument>0</argument>
       <argument>0</argument>
     </service>
-    <service id="fos_elastica.repository_manager" class="FOS\ElasticaBundle\Manager\RepositoryManager"/>
+    <service id="fos_elastica.repository_manager" class="FOS\ElasticaBundle\Manager\RepositoryManager">
+      <call method="addIndex">
+        <argument>images</argument>
+        <argument type="service" id="fos_elastica.finder.images"/>
+        <argument>\App\Repository\ImagesRepository</argument>
+      </call>
+    </service>
     <service id="fos_elastica.alias_processor" class="FOS\ElasticaBundle\Index\AliasProcessor"/>
     <service id="fos_elastica.indexable" class="FOS\ElasticaBundle\Provider\Indexable">
       <argument type="collection"/>
@@ -4084,9 +4114,9 @@
     </service>
     <service id="fos_elastica.index_manager" class="FOS\ElasticaBundle\Index\IndexManager">
       <argument type="collection">
-        <argument key="app" type="service" id="fos_elastica.index.app"/>
+        <argument key="images" type="service" id="fos_elastica.index.images"/>
       </argument>
-      <argument type="service" id="fos_elastica.index.app"/>
+      <argument type="service" id="fos_elastica.index.images"/>
     </service>
     <service id="fos_elastica.index_template_manager" class="FOS\ElasticaBundle\Index\IndexTemplateManager">
       <argument type="collection"/>
@@ -4117,7 +4147,7 @@
       <argument type="service" id=".service_locator.7wkhV39"/>
     </service>
     <service id="fos_elastica.persister_registry" class="FOS\ElasticaBundle\Persister\PersisterRegistry">
-      <argument type="service" id=".service_locator.Xbsa8iG"/>
+      <argument type="service" id=".service_locator.1aKzTu1"/>
     </service>
     <service id="fos_elastica.filter_objects_listener" class="FOS\ElasticaBundle\Persister\Listener\FilterObjectsListener">
       <tag name="kernel.event_subscriber"/>
@@ -4138,22 +4168,27 @@
       <argument></argument>
     </service>
     <service id="fos_elastica.pager_provider_registry" class="FOS\ElasticaBundle\Provider\PagerProviderRegistry">
-      <argument type="service" id=".service_locator.Xbsa8iG"/>
+      <argument type="service" id=".service_locator.mFcGNZe"/>
     </service>
     <service id="fos_elastica.config_source.container" class="FOS\ElasticaBundle\Configuration\Source\ContainerSource">
       <tag name="fos_elastica.config_source"/>
       <argument type="collection">
-        <argument key="app" type="collection">
-          <argument key="elasticsearch_name">app</argument>
-          <argument key="reference" type="service" id="fos_elastica.index.app"/>
-          <argument key="model">null</argument>
-          <argument key="name">app</argument>
+        <argument key="images" type="collection">
+          <argument key="elasticsearch_name">images</argument>
+          <argument key="reference" type="service" id="fos_elastica.index.images"/>
+          <argument key="model">\App\Entity\Images</argument>
+          <argument key="name">images</argument>
           <argument key="settings" type="collection"/>
           <argument key="index_prototype" type="collection"/>
           <argument key="use_alias">false</argument>
           <argument key="mapping" type="collection">
             <argument key="dynamic_templates" type="collection"/>
-            <argument key="properties" type="collection"/>
+            <argument key="properties" type="collection">
+              <argument key="id" type="collection">
+                <argument key="type">integer</argument>
+              </argument>
+              <argument key="image_name">keyword</argument>
+            </argument>
           </argument>
           <argument key="config" type="collection">
             <argument key="analyzer">null</argument>
@@ -4249,7 +4284,8 @@
       <argument type="collection">
         <argument key="connections" type="collection">
           <argument type="collection">
-            <argument key="url">%env(ELASTICSEARCH_URL)%</argument>
+            <argument key="host">localhost</argument>
+            <argument key="port">9200</argument>
             <argument key="http_error_codes" type="collection">
               <argument>400</argument>
               <argument>403</argument>
@@ -4274,10 +4310,108 @@
         <argument type="service" id="fos_elastica.logger"/>
       </call>
     </service>
-    <service id="fos_elastica.index.app" class="FOS\ElasticaBundle\Elastica\Index">
-      <tag name="app">fos_elastica.index</tag>
-      <argument>app</argument>
+    <service id="fos_elastica.index.images" class="FOS\ElasticaBundle\Elastica\Index">
+      <tag name="images">fos_elastica.index</tag>
+      <argument>images</argument>
       <factory service="fos_elastica.client.default" method="getIndex"/>
+    </service>
+    <service id="fos_elastica.pager_provider.prototype.orm" class="FOS\ElasticaBundle\Doctrine\ORMPagerProvider" abstract="true">
+      <argument type="service" id="doctrine"/>
+      <argument type="service" id="fos_elastica.doctrine.register_listeners"/>
+      <argument></argument>
+      <argument type="collection"/>
+    </service>
+    <service id="fos_elastica.doctrine.register_listeners" class="FOS\ElasticaBundle\Doctrine\RegisterListenersService">
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="fos_elastica.listener.prototype.orm" class="FOS\ElasticaBundle\Doctrine\Listener" abstract="true">
+      <argument></argument>
+      <argument type="service" id="fos_elastica.indexable"/>
+      <argument type="collection"/>
+      <argument>null</argument>
+    </service>
+    <service id="fos_elastica.elastica_to_model_transformer.prototype.orm" class="FOS\ElasticaBundle\Doctrine\ORM\ElasticaToModelTransformer" abstract="true">
+      <argument type="service" id="doctrine"/>
+      <argument></argument>
+      <argument type="collection"/>
+      <call method="setPropertyAccessor">
+        <argument type="service" id="fos_elastica.property_accessor"/>
+      </call>
+    </service>
+    <service id="fos_elastica.manager.orm" class="FOS\ElasticaBundle\Doctrine\RepositoryManager">
+      <argument type="service" id="doctrine"/>
+      <argument type="service" id="fos_elastica.repository_manager"/>
+      <call method="addEntity">
+        <argument>\App\Entity\Images</argument>
+        <argument>images</argument>
+      </call>
+    </service>
+    <service id="fos_elastica.elastica_to_model_transformer.images" class="FOS\ElasticaBundle\Doctrine\ORM\ElasticaToModelTransformer">
+      <tag name="fos_elastica.elastica_to_model_transformer" index="images"/>
+      <argument type="service" id="doctrine"/>
+      <argument>\App\Entity\Images</argument>
+      <argument type="collection">
+        <argument key="hints" type="collection"/>
+        <argument key="hydrate">true</argument>
+        <argument key="ignore_missing">false</argument>
+        <argument key="query_builder_method">createQueryBuilder</argument>
+        <argument key="identifier">id</argument>
+      </argument>
+      <call method="setPropertyAccessor">
+        <argument type="service" id="fos_elastica.property_accessor"/>
+      </call>
+    </service>
+    <service id="fos_elastica.model_to_elastica_transformer.images" class="FOS\ElasticaBundle\Transformer\ModelToElasticaAutoTransformer">
+      <argument type="collection">
+        <argument key="identifier">id</argument>
+        <argument key="index">images</argument>
+      </argument>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <call method="setPropertyAccessor">
+        <argument type="service" id="fos_elastica.property_accessor"/>
+      </call>
+    </service>
+    <service id="fos_elastica.object_persister.images" class="FOS\ElasticaBundle\Persister\ObjectPersister">
+      <tag name="fos_elastica.persister" index="images"/>
+      <argument type="service" id="fos_elastica.index.images"/>
+      <argument type="service" id="fos_elastica.model_to_elastica_transformer.images"/>
+      <argument>\App\Entity\Images</argument>
+      <argument type="collection">
+        <argument key="id" type="collection">
+          <argument key="type">integer</argument>
+        </argument>
+        <argument key="image_name">keyword</argument>
+      </argument>
+      <argument type="collection"/>
+    </service>
+    <service id="fos_elastica.pager_provider.images" class="FOS\ElasticaBundle\Doctrine\ORMPagerProvider">
+      <tag name="fos_elastica.pager_provider" index="images"/>
+      <argument type="service" id="doctrine"/>
+      <argument type="service" id="fos_elastica.doctrine.register_listeners"/>
+      <argument>\App\Entity\Images</argument>
+      <argument type="collection">
+        <argument key="batch_size">100</argument>
+        <argument key="clear_object_manager">true</argument>
+        <argument key="debug_logging">true</argument>
+        <argument key="query_builder_method">createQueryBuilder</argument>
+      </argument>
+    </service>
+    <service id="fos_elastica.finder.images" class="FOS\ElasticaBundle\Finder\TransformedFinder">
+      <argument type="service" id="fos_elastica.index.images"/>
+      <argument type="service" id="fos_elastica.elastica_to_model_transformer.images"/>
+    </service>
+    <service id="fos_elastica.listener.images" class="FOS\ElasticaBundle\Doctrine\Listener">
+      <tag name="doctrine.event_listener" event="postPersist"/>
+      <tag name="doctrine.event_listener" event="postUpdate"/>
+      <tag name="doctrine.event_listener" event="preRemove"/>
+      <tag name="doctrine.event_listener" event="postFlush"/>
+      <argument type="service" id="fos_elastica.object_persister.images"/>
+      <argument type="service" id="fos_elastica.indexable"/>
+      <argument type="collection">
+        <argument key="identifier">id</argument>
+        <argument key="indexName">images</argument>
+      </argument>
+      <argument>null</argument>
     </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\AdminController" class="App\Controller\Admin\AdminController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\AdminController" class="App\Controller\Admin\AdminController" autowire="true" abstract="true"/>
@@ -4785,12 +4919,13 @@
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service_closure" id="form.type.form"/>
       </argument>
     </service>
-    <service id=".service_locator.QXcJQkF" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.4igpj6B" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service_closure" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
         <argument key="doctrine.orm.listeners.doctrine_dbal_cache_adapter_schema_subscriber" type="service_closure" id="doctrine.orm.listeners.doctrine_dbal_cache_adapter_schema_subscriber"/>
         <argument key="doctrine.orm.listeners.doctrine_token_provider_schema_subscriber" type="service_closure" id="doctrine.orm.listeners.doctrine_token_provider_schema_subscriber"/>
+        <argument key="fos_elastica.listener.images" type="service_closure" id="fos_elastica.listener.images"/>
       </argument>
     </service>
     <service id=".service_locator..BGI..k" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -4986,6 +5121,18 @@
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="in_place" type="service_closure" id="fos_elastica.in_place_pager_persister"/>
+      </argument>
+    </service>
+    <service id=".service_locator.1aKzTu1" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="images" type="service_closure" id="fos_elastica.object_persister.images"/>
+      </argument>
+    </service>
+    <service id=".service_locator.mFcGNZe" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="images" type="service_closure" id="fos_elastica.pager_provider.images"/>
       </argument>
     </service>
     <service id="debug.validator.inner" class="Symfony\Component\Validator\Validator\ValidatorInterface">
@@ -5807,7 +5954,9 @@
     <service id="fos_elastica.client" alias="fos_elastica.client.default"/>
     <service id="Elastica\Client" alias="fos_elastica.client.default"/>
     <service id="FOS\ElasticaBundle\Elastica\Client" alias="fos_elastica.client.default"/>
-    <service id="fos_elastica.index" alias="fos_elastica.index.app"/>
+    <service id="fos_elastica.index" alias="fos_elastica.index.images"/>
+    <service id="fos_elastica.manager" alias="fos_elastica.manager.orm"/>
+    <service id="FOS\ElasticaBundle\Manager\RepositoryManagerInterface" alias="fos_elastica.manager.orm"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
     <service id="argument_resolver.controller_locator" alias=".service_locator.8pvc0ZB"/>
@@ -5819,7 +5968,7 @@
     <service id=".service_locator.6im7r5w" alias=".service_locator.8pvc0ZB"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.jd9WGzU" alias=".service_locator.fi36mBH"/>
-    <service id=".service_locator.qBCHs1a" alias=".service_locator.QXcJQkF"/>
+    <service id=".service_locator.81s.r1W" alias=".service_locator.4igpj6B"/>
     <service id=".service_locator._eRAkJb" alias=".service_locator.jIxfAsi"/>
     <service id="validator" alias="debug.validator"/>
     <service id="event_dispatcher" alias="debug.event_dispatcher" public="true"/>

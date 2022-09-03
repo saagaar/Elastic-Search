@@ -1,6 +1,25 @@
-# Read the documentation: https://github.com/FriendsOfSymfony/FOSElasticaBundle/blob/master/doc/setup.md
+#app/config/config.yml
 fos_elastica:
-    clients:
-        default: { url: '%env(ELASTICSEARCH_URL)%' }
-    indexes:
-        app: null
+  default_manager: orm
+  clients:
+    default: { host: localhost,port: 9200}
+  indexes:
+    images:
+      properties:
+        id:
+          type: integer
+        image_name: keyword
+      persistence:
+        model: \App\Entity\Images
+        repository: \App\Repository\ImagesRepository
+        provider: ~
+        finder: ~
+      
+
+
+
+
+
+
+
+                   
