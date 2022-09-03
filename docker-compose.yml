@@ -59,19 +59,35 @@ services:
             retries: 3
             timeout: 5s
 
-    phpmyadmin:
-        
-        image: 'phpmyadmin'
-        environment: 
-            - PMA_HOST = mysql
-            - PMA_PORT = 3306
-            - PMA_ARBITRARY=1
-            - UPLOAD_LIMIT=300M
+    elasticsearch-service:
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
+        environment:
+          - discovery.type=single-node
+          - ES_JAVA_OPTS=-Xms512m -Xmx512m
+        container_name: elasticsearch-container
+        volumes:
+          - ./elastic/data/es/db:/usr/share/elasticsearch/data
+          - ./elastic/data/es/logs:/usr/share/elasticsearch/logs
+          - ./elastic/data/es/repo:/usr/share/elasticsearch/repo
         ports:
-            - 8081:80
-        restart: always
+          - "9200:9200"
+        expose:
+          - "9200"
         networks:
             - nginx-php81-mysql8
-        depends_on:
-            - mysql
+    # phpmyadmin:
+        
+    #     image: 'phpmyadmin'
+    #     environment: 
+    #         - PMA_HOST = mysql
+    #         - PMA_PORT = 3306
+    #         - PMA_ARBITRARY=1
+    #         - UPLOAD_LIMIT=300M
+    #     ports:
+    #         - 8081:80
+    #     restart: always
+    #     networks:
+    #         - nginx-php81-mysql8
+    #     depends_on:
+    #         - mysql
    
