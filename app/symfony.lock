@@ -73,6 +73,7 @@
             "config/packages/fos_elastica.yaml"
         ]
     },
+
     "nelmio/cors-bundle": {
         "version": "2.2",
         "recipe": {

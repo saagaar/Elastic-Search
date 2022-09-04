@@ -15,8 +15,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 
 
@@ -25,14 +26,19 @@ class ImageUploadType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('image_url',UrlType::class,[
-
+            ->add('image_attachment',FileType::class,[
+               'required'=>true,
+               'label'=>false,
                'mapped'=>false,
                'attr' => ['placeholder' => 'Enter Image URL','class' => 'form-control','id'=>'image_url'],
                'constraints' => [
                     new NotBlank([
                         'message' => 'Please Enter URL!',
                     ]),
+                    new Image([
+                        'maxSize' => '5M'
+                    ])
+
                 ],
             ])
             ->add('provider',EntityType::class,[
@@ -50,6 +56,7 @@ class ImageUploadType extends AbstractType
                 ],
             ])
             ->add('tags',EntityType::class,[
+                'required'=>true,
                 'multiple'=>true,
                 'class'=>Tags::class,
                 'label'=>false,
@@ -100,10 +107,10 @@ class ImageUploadType extends AbstractType
                         'choice_label' => 'tag_name',
                         'label' => 'Tag',
                         'multiple'=>true,
-                        'attr' => ['class' => 'select2-single-tags form-control','id'=>'tags'],
+                        'attr' => ['class' => 'js-example-basic-multiple form-control','id'=>'tags'],
                         'query_builder' => function (TagsRepository $er) use  ($selected){
                             return $er->createQueryBuilder('a')
-                                ->where('a.id = :id')
+                                ->where('a.id in (:id)')
                                 ->setParameter('id', $selected);
                         },
                     ));
