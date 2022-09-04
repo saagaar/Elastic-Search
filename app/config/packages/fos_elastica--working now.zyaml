@@ -1,0 +1,34 @@
+#app/config/config.yml
+fos_elastica:
+  default_manager: orm
+  clients:
+    default: { url: '%env(ELASTICSEARCH_URL)%' }  
+  indexes:
+    images:
+      properties:
+        id: ~
+        image_name: ~
+        provider: 
+          type: object
+          properties: 
+            provider_name: ~
+        tags:
+          type: object
+          properties:
+            tag_name: ~
+      persistence:
+        driver: orm
+        model: App\Entity\Images
+        provider: ~
+        finder: ~
+
+    
+      
+
+
+
+
+
+
+
+                   

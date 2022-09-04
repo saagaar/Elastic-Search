@@ -1,7 +1,5 @@
 version: '3.8'
 
-networks:
-    nginx-php81-mysql8:
 
 services:
 
@@ -17,8 +15,6 @@ services:
         depends_on:
             - php81-service
             - mysql
-        networks:
-            - nginx-php81-mysql8
 
     # php
     php81-service:
@@ -30,17 +26,21 @@ services:
             - "9000:9000"
         volumes:
             - ./app:/var/www/symfony
-        networks:
-            - nginx-php81-mysql8
         depends_on:
             - mysql
+            - elasticsearch
+
+        links: 
+            - elasticsearch
+            - mysql
+
 
     # mysql
     mysql:
         image: mysql
         container_name: mysql8-container
         ports:
-            - "4306:3306"
+            - "3306:3306"
         command: --default-authentication-plugin=mysql_native_password
         volumes:
             - ./mysql:/var/lib/mysql
@@ -52,18 +52,17 @@ services:
             MYSQL_DATABASE: desygner
             MYSQL_PASSWORD: 123456
 
-        networks:
-            - nginx-php81-mysql8
         healthcheck:
             test: ["CMD", "mysqladmin", "ping", "-p123456"]
             retries: 3
             timeout: 5s
 
-    elasticsearch-service:
+    elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
         environment:
           - discovery.type=single-node
           - ES_JAVA_OPTS=-Xms512m -Xmx512m
+          - transport.host=0.0.0.0
         container_name: elasticsearch-container
         volumes:
           - ./elastic/data/es/db:/usr/share/elasticsearch/data
@@ -73,8 +72,6 @@ services:
           - "9200:9200"
         expose:
           - "9200"
-        networks:
-            - nginx-php81-mysql8
     # phpmyadmin:
         
     #     image: 'phpmyadmin'

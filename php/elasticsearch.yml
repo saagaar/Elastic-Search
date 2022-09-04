@@ -1,0 +1,7 @@
+network:
+  host: 127.0.0.1
+path:
+  repo: /var/www/elastic-search/repo
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+http.cors.allow-headers: "Authorization"

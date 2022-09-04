@@ -2,24 +2,48 @@
 fos_elastica:
   default_manager: orm
   clients:
-    default: { host: localhost,port: 9200}
+    default: { url: '%env(ELASTICSEARCH_URL)%' }  
   indexes:
     images:
-      properties:
-        id:
-          type: integer
-        image_name: keyword
-      persistence:
-        model: \App\Entity\Images
-        repository: \App\Repository\ImagesRepository
-        provider: ~
-        finder: ~
-      
-
-
-
-
-
-
-
+        properties:
+            id: ~
+            image_name: ~
+            provider: 
+                type: object
+                properties: 
+                    provider_name: ~
+            tags:
+                type: object
+                properties:
+                    tag_name: ~
+        persistence:
+            driver: orm
+            model: App\Entity\Images
+            provider: ~
+            finder: ~
+    tags:
+        properties:
+            tag_name: ~
+            images: 
+                type: object
+                properties:
+                    image_name: ~
+        persistence:
+            driver: orm
+            model: App\Entity\Tags
+            provider: ~
+            finder: ~
+    provider:
+        properties:
+            provider_name: ~
+            images: 
+                type: object
+                properties:
+                    image_name: ~
+        persistence:
+            driver: orm
+            model: App\Entity\Providers
+            provider: ~
+            finder: ~
+    
                    
