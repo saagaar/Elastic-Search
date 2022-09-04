@@ -8,8 +8,8 @@
 # Email spool folder
 /app/spool/*
 /mysql/*
-elastic/*
-elastic--a/*
+/elastic/*
+/elastic--a/*
 # Cache, session files and logs (Symfony3)
 /app/var/cache/*
 /app/var/logs/*

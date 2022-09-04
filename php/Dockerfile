@@ -31,9 +31,8 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash
 WORKDIR /var/www/symfony
 
 # Node
-# FROM node:16 As build
-# WORKDIR /var/www/symfony
-# copy  app/package.json /var/www/symfony/package.json
-# RUN npm install
-# RUN encore yarn build
-# CMD ["npm", "run", "dev"]
+RUN apt-get install -y nodejs 
+ copy  app/package.json /var/www/symfony/package.json
+ RUN npm install
+ RUN  npm build
+ CMD ["npm", "run", "dev"]
