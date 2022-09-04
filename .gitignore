@@ -1,24 +1,26 @@
+### Symfony ###
 # Cache and logs (Symfony2)
-/app/cache/
-/app/logs/
+/app/cache/*
+/app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 
 # Email spool folder
-/app/spool/
+/app/spool/*
+/mysql/*
 elastic/*
-/mysql/
+elastic--a/*
 # Cache, session files and logs (Symfony3)
-/var/cache/
-/var/logs/
-/var/sessions/
-!var/cache/.gitkeep
-!var/logs/.gitkeep
-!var/sessions/.gitkeep
+/app/var/cache/*
+/app/var/logs/*
+/app/var/sessions/*
+!/app/var/cache/.gitkeep
+!/app/var/logs/.gitkeep
+!app/var/sessions/.gitkeep
 
 # Logs (Symfony4)
-/var/log/
-!var/log/.gitkeep
+/app/var/log/*
+!app/var/log/.gitkeep
 
 # Parameters
 /app/config/parameters.yml
@@ -26,23 +28,23 @@ elastic/*
 
 # Managed by Composer
 /app/bootstrap.php.cache
-/var/bootstrap.php.cache
-/app/var/
-/bin/
-!bin/console
-!bin/symfony_requirements
-app/vendor/
+/app/var/bootstrap.php.cache
+/app/bin/*
+!app/bin/console
+!app/bin/symfony_requirements
+/app/vendor/*
 
 # Assets and user uploads
-/web/bundles/
-/web/uploads/
+/app/web/bundles/
+/app/web/uploads/
 
 # PHPUnit
 /app/phpunit.xml
-/phpunit.xml
+/app/phpunit.xml
 
 # Build data
-/build/
+/app/build/
+
 # Composer PHAR
 /composer.phar
 
@@ -51,3 +53,15 @@ app/vendor/
 
 # Embedded web-server pid file
 /.web-server-pid
+
+### Symfony Patch ###
+/web/css/
+/web/js/
+
+### Vuejs ###
+# Recommended template: Node.gitignore
+
+/app/node_modules/
+dist/
+npm-debug.log
+yarn-error.log
