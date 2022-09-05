@@ -5,14 +5,17 @@ namespace App\Controller\Frontend;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ProvidersRepository;
 
 class HomeController extends AbstractController
 {
-    #[Route('/frontend/home', name: 'frontend_home')]
-    public function index(): Response
+    #[Route('/', name: 'frontend_home')]
+    public function index(ProvidersRepository $provider): Response
     {
+        $allProviders=$provider->findAllProviders();
         return $this->render('frontend/home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'providersData'=>$allProviders
         ]);
     }
 

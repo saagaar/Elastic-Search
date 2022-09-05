@@ -29,7 +29,6 @@ class ProvidersRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
     public function remove(Providers $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
@@ -38,8 +37,11 @@ class ProvidersRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-     public function findByProviderName($search='')
+    /**
+     * @Param $search String
+     * @return Array
+     */
+    public function findByProviderName($search='')
     {
         $tagQuery = $this->createQueryBuilder('p');
         if($search){
@@ -52,29 +54,14 @@ class ProvidersRepository extends ServiceEntityRepository
          ->getArrayResult();
          return $tagQuery;
     }
+    /**
+     * @return Array
+     */
+    public function findAllProviders()
+    {
+        $qb = $this->createQueryBuilder('p');
+        $query = $qb->getQuery()->getArrayResult();
+        return $query;
+    }
 
-//    /**
-//     * @return Providers[] Returns an array of Providers objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Providers
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

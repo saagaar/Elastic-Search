@@ -72,7 +72,8 @@ class ImagesRepository extends ServiceEntityRepository
             $query->setQuery($boolQuery);
             $query->setSize($this->perPage);
             $query->setFrom(($page - 1) * $this->perPage);
-            $result = $finder->find($boolQuery);
+            // echo ($page - 1) * $this->perPage;
+            $result = $finder->find($query);
             $data=[];
             foreach($result as $eachResult){
                 $data[]=['image'=>$eachResult->getImageName(),'provider'=>$eachResult->getProvider()->getId()
