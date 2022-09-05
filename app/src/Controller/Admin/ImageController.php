@@ -34,8 +34,8 @@ class ImageController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $newImage=$form->getData();
-            $newImage->provider_id;exit;
-                $dir=$this->getParameter('kernel.project_dir').'/public/uploads/images/';
+             $providerId= ($newImage->getProvider()->getId());
+                $dir=$this->getParameter('kernel.project_dir').'/public/uploads/images/'.$providerId.'/';
                 if(!is_dir($dir)){
                     mkdir($dir,0777,true);
                 }

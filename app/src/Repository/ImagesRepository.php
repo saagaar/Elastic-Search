@@ -75,7 +75,8 @@ class ImagesRepository extends ServiceEntityRepository
             $result = $finder->find($boolQuery);
             $data=[];
             foreach($result as $eachResult){
-                $data[]=['image'=>$eachResult->getImageName()];
+                $data[]=['image'=>$eachResult->getImageName(),'provider'=>$eachResult->getProvider()->getId()
+            ];
             }
             return $data;
          }  
