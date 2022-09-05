@@ -10,6 +10,8 @@
 /mysql/*
 /elastic/*
 /elastic--a/*
+/Vue/node_modules/
+/Vue/dist/*
 # Cache, session files and logs (Symfony3)
 /app/var/cache/*
 /app/var/logs/*
