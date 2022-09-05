@@ -10,7 +10,7 @@
 /mysql/*
 /elastic/*
 /elastic--a/*
-/Vue/node_modules/
+/Vue/node_modules/*
 /Vue/dist/*
 # Cache, session files and logs (Symfony3)
 /app/var/cache/*
@@ -30,11 +30,21 @@
 
 # Managed by Composer
 /app/bootstrap.php.cache
+<<<<<<< HEAD
 /app/var/bootstrap.php.cache
 /app/bin/*
 !app/bin/console
 !app/bin/symfony_requirements
 /app/vendor/*
+=======
+/var/bootstrap.php.cache
+/app/var/*
+/bin/*
+!bin/console
+!bin/symfony_requirements
+/app/vendor/*
+/node_modules/*
+>>>>>>> 95f70ffe (vue installed)
 
 # Assets and user uploads
 /app/web/bundles/
