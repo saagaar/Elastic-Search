@@ -47,6 +47,7 @@ class ImageController extends AbstractController
                      try{
                         $image->move($dir,$newFileName);
                      }
+
                      catch(FileException $e){
                         return new Response($e->getMessage());
                      }
