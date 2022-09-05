@@ -7,11 +7,18 @@
 
 # Email spool folder
 /app/spool/*
+<<<<<<< HEAD
 /mysql/*
 /elastic/*
 /elastic--a/*
 /Vue/node_modules/*
 /Vue/dist/*
+=======
+
+/mysql/
+/elastic/
+/elastic--a/
+>>>>>>> e18b19a4 (git ignore updated)
 # Cache, session files and logs (Symfony3)
 /app/var/cache/*
 /app/var/logs/*
