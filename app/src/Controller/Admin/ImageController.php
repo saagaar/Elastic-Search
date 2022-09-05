@@ -15,6 +15,8 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use App\Entity\Images;
 use App\Form\ImageUploadType;
 use App\Form\ImageExtractType;
+use App\Services\ImageOptimizer;
+
 class ImageController extends AbstractController
 {
     private $em;

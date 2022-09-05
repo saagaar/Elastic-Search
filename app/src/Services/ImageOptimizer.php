@@ -18,7 +18,7 @@ class ImageOptimizer
 
     }
 
-    public function resize(string $filename): void
+    public function resize(string $oldFilepath,$newFilePath): void
     {
         list($iwidth, $iheight) = getimagesize($filename);
         $ratio = $iwidth / $iheight;
