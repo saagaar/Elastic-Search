@@ -7,18 +7,12 @@
 
 # Email spool folder
 /app/spool/*
-<<<<<<< HEAD
 /mysql/*
 /elastic/*
 /elastic--a/*
 /Vue/node_modules/*
 /Vue/dist/*
-=======
 
-/mysql/
-/elastic/
-/elastic--a/
->>>>>>> e18b19a4 (git ignore updated)
 # Cache, session files and logs (Symfony3)
 /app/var/cache/*
 /app/var/logs/*
@@ -37,13 +31,7 @@
 
 # Managed by Composer
 /app/bootstrap.php.cache
-<<<<<<< HEAD
-/app/var/bootstrap.php.cache
-/app/bin/*
-!app/bin/console
-!app/bin/symfony_requirements
-/app/vendor/*
-=======
+
 /var/bootstrap.php.cache
 /app/var/*
 /bin/*
@@ -51,7 +39,6 @@
 !bin/symfony_requirements
 /app/vendor/*
 /node_modules/*
->>>>>>> 95f70ffe (vue installed)
 
 # Assets and user uploads
 /app/web/bundles/
