@@ -3,7 +3,14 @@ namespace App\Repository;
 use App\Entity\Images;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use FOS\ElasticaBundle\Repository;
+use FOS\ElasticaBundle\Manager\RepositoryManagerInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+
+
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 /**
  * @extends ServiceEntityRepository<Images>
@@ -15,9 +22,15 @@ use FOS\ElasticaBundle\Repository;
  */
 class ImagesRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    protected $manager;
+    private $perPage=5  ;
+    private $serializer;
+    public function __construct(ManagerRegistry $registry,RepositoryManagerInterface $manager,SerializerInterface $serializer)
     {
         parent::__construct($registry, Images::class);
+         $this->container = new ContainerBuilder();
+         $this->manager=$manager;   
+         $this->serializer=$serializer;
     }
 
     public function add(Images $entity, bool $flush = false): void
@@ -37,27 +50,33 @@ class ImagesRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-     public function matchExact($campo, $searchQuery) {
-
-
-         //$finder = $this->get('fos_elastica.finder.sava.blog');
-
-        $query = new Query();
-        if($searchQuery=='')
-        {
-            $innerQuery = new Query\MatchAll();
-        }
-        else{
-           $innerQuery = new Query\Match();
-        $innerQuery->setField( $campo  , array('query' => $searchQuery));
-        }
-        $query->setQuery($innerQuery);
-        $query->setSize(1000000);
-        $query->setExplain(true);
-
-        return $this->find($query);
-    }  
+    /**
+    * @return Images[] Returns an array of Images objects
+    */
+     public function elasticSearchQuery(Request $request) {
+            $finder=$this->manager->getRepository(Images::class);
+            $page=($request->get('page'))?$request->get('page'):1;
+            $tag=$request->get('tag');
+            $boolQuery = new \Elastica\Query\BoolQuery();
+            $provider=$request->get('provider');
+            $tagQuery = new \Elastica\Query\Fuzzy('tags.tag_name',$tag);
+            $providerQuery = new \Elastica\Query\MatchQuery('provider.provider_name',$provider);
+            if($tag){
+                $boolQuery->addMust($tagQuery);
+            }
+            if($provider){
+                $boolQuery->addFilter($providerQuery);
+            }
+            $query = new \Elastica\Query();
+            $query->setQuery($boolQuery);
+            $query->setSize($this->perPage);
+            $query->setFrom(($page - 1) * $this->perPage);
+            $result = $finder->find($query);
+            foreach($result as $eachResult){
+                $data[]=['image'=>$eachResult->getImageName()];
+            }
+            return $data;
+         }  
 
 //    /**
 //     * @return Images[] Returns an array of Images objects

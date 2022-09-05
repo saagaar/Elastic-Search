@@ -3,63 +3,40 @@
 namespace App\Controller\Api;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\Images;
+use App\Repository\ImagesRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use ApiPlatform\Core\Annotation\ApiResource;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use FOS\ElasticaBundle\Manager\RepositoryManager;
 use FOS\ElasticaBundle\Repository;
-use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
-use FOS\ElasticaBundle\Manager\RepositoryManagerInterface;
 use Pagerfanta\Adapter\FixedAdapter;
+use Symfony\Component\Serializer\SerializerInterface;
+use \Indaxia\OTR\Traits\Transformable;
+// use Symfony\Component\Serializer\Serializer;
+
+
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+
 #[ApiResource]
-class SearchController extends AbstractController
+class SearchController extends AbstractController 
 {
 
+	use Transformable;
 	protected $container;
-	private $perPage=5	;
-    public function __construct(RepositoryManagerInterface $manager)
-    {
-        $this->container = new ContainerBuilder();
-        $this->manager=$manager;
-    }
-
+	private $serializer;
+  
     #[Route('/api/search/', name: 'app_api_search_api')]
-    public function index(Request $request): JsonResponse
+    public function index(ImagesRepository	 $images,Request $request): JsonResponse
     {
-    	$finder=$this->manager->getRepository(Images::class);
-    	$page=($request->get('page'))?$request->get('page'):1;
-    	$tag=$request->get('tag');
-    	$boolQuery = new \Elastica\Query\BoolQuery();
-    	$provider=$request->get('provider');
-    	$tagQuery = new \Elastica\Query\Fuzzy('tags.tag_name',$tag);
-		$providerQuery = new \Elastica\Query\MatchQuery('provider.provider_name',$provider);
-		if($tag){
-			$boolQuery->addFilter($tagQuery);
-		}
-		if($provider){
-			$boolQuery->addFilter($providerQuery);
-		}
-		$query = new \Elastica\Query();
-		$query->setQuery($boolQuery);
-		$query->setSize($this->perPage);
-		$query->setFrom(($page - 1) * $this->perPage);
-		$result = $finder->find($query);
-		// dd($result);	
-		foreach($result as $eachResult){
-			print_r(($eachResult->getImage()));exit;
-		// 	print_r({$eachResult}->getProperties());
-		// 	// print_r($eachResult->gettags()->);exit;
-		}
-		exit;
-
-		// $data[]= $this->serializer->deserialize($data, Images::class, 'json', ['object_to_populate' => $eachResult]); 
-		// }
-
-		// dd($data);exit;
-		// echo $result->
-		// return new JsonResponse($result,200, ["Content-Type" => "application/json"]);
+    	$data=$images->elasticSearchQuery($request);
+		return $this->json(
+            $data,
+            headers: ['Content-Type' => 'application/json;charset=UTF-8']
+        );	
+		
     }
 }

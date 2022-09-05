@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use \Indaxia\OTR\Traits\Transformable;
 
 
 
@@ -14,6 +15,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 class Images
 {
+    use Transformable;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
