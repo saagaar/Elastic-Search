@@ -23,7 +23,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 class ImagesRepository extends ServiceEntityRepository
 {
     protected $manager;
-    private $perPage=5  ;
+    private $perPage=10  ;
     private $serializer;
     public function __construct(ManagerRegistry $registry,RepositoryManagerInterface $manager,SerializerInterface $serializer)
     {
@@ -59,19 +59,21 @@ class ImagesRepository extends ServiceEntityRepository
             $tag=$request->get('tag');
             $boolQuery = new \Elastica\Query\BoolQuery();
             $provider=$request->get('provider');
-            $tagQuery = new \Elastica\Query\Fuzzy('tags.tag_name',$tag);
-            $providerQuery = new \Elastica\Query\MatchQuery('provider.provider_name',$provider);
-            if($tag){
-                $boolQuery->addMust($tagQuery);
-            }
+            $tagQuery = new \Elastica\Query\SimpleQueryString($tag,['tags.tag_name']);
+            $tagFuzzyQuery = new \Elastica\Query\Fuzzy('tags.tag_name',$tag);
+            $providerQuery = new \Elastica\Query\Term(['provider.provider_name'=>$provider]);
             if($provider){
-                $boolQuery->addFilter($providerQuery);
+                $boolQuery->addMust($providerQuery);
+            }
+            if($tag){
+                $boolQuery->addFilter($tagFuzzyQuery);
             }
             $query = new \Elastica\Query();
             $query->setQuery($boolQuery);
             $query->setSize($this->perPage);
             $query->setFrom(($page - 1) * $this->perPage);
-            $result = $finder->find($query);
+            $result = $finder->find($boolQuery);
+            $data=[];
             foreach($result as $eachResult){
                 $data[]=['image'=>$eachResult->getImageName()];
             }
