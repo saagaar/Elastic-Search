@@ -34,7 +34,7 @@ class SearchController extends AbstractController
     {
     	$data=$images->elasticSearchQuery($request);
 		return $this->json(
-            ['message'=>'Data Fetched Successfully','data'=>$data],
+            ['status'=>true,'message'=>'Data Fetched Successfully','data'=>$data],
             headers: ['Content-Type' => 'application/json;charset=UTF-8']
         );	
 		

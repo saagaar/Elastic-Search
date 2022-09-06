@@ -30,9 +30,15 @@ class Images
     #[ORM\ManyToMany(targetEntity: Tags::class, inversedBy: 'images')]
     private Collection $tags;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'images')]
+    private Collection $users;
+
+    
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,6 +90,55 @@ class Images
     public function removeTag(Tags $tag): self
     {
         $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    // /**
+    //  * @return Collection<int, User>
+    //  */
+    // public function getUsers(): Collection
+    // {
+    //     return $this->users;
+    // }
+
+    // public function addUser(User $user): self
+    // {
+    //     if (!$this->users->contains($user)) {
+    //         $this->users[]=($user);
+    //     }
+    //     return $this;
+    // }
+
+    // public function removeUser(user $user): self
+    // {
+    //    $this->users->removeImage($user);
+    //     return $this;
+    // }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addImage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeImage($this);
+        }
 
         return $this;
     }

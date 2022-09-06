@@ -23,7 +23,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 class ImagesRepository extends ServiceEntityRepository
 {
     protected $manager;
-    private $perPage=10  ;
+    private $perPage=10;
     private $serializer;
     public function __construct(ManagerRegistry $registry,RepositoryManagerInterface $manager,SerializerInterface $serializer)
     {
@@ -36,7 +36,6 @@ class ImagesRepository extends ServiceEntityRepository
     public function add(Images $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
-
         if ($flush) {
             $this->getEntityManager()->flush();
         }
@@ -45,7 +44,6 @@ class ImagesRepository extends ServiceEntityRepository
     public function remove(Images $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
-
         if ($flush) {
             $this->getEntityManager()->flush();
         }
@@ -72,12 +70,11 @@ class ImagesRepository extends ServiceEntityRepository
             $query->setQuery($boolQuery);
             $query->setSize($this->perPage);
             $query->setFrom(($page - 1) * $this->perPage);
-            // echo ($page - 1) * $this->perPage;
             $result = $finder->find($query);
             $data=[];
             foreach($result as $eachResult){
-                $data[]=['image'=>$eachResult->getImageName(),'provider'=>$eachResult->getProvider()->getId()
-            ];
+                $data[]=['image'=>$eachResult->getImageName(),'image_id'=>$eachResult->getId(),'provider'=>$eachResult->getProvider()->getId()
+                    ];
             }
             return $data;
          }  

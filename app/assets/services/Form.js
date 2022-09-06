@@ -189,7 +189,6 @@ export default class Form {
                             resolve(response);
                         })
                         .catch(error => {
-                            alert(error);
                             this.onFail(error.response.data);
                             reject(error.response.data);
                         });

@@ -1,48 +1,49 @@
 <template>
-<div class="container">
+
       <section class="text-center">
+        <SuccessErrorMessage></SuccessErrorMessage>
+
          <div class="card card" style="background-color:#e1e1e1">
               <div class="card-header">
                 <div class="row">
                     <div class="col-md-4 col-lg-3">
-                      <div class="select-wrapper">
-                        <FilterProvider></FilterProvider> 
+                      <div class="select-wrapper" v-if="location!='library'">
+                        <FilterProvider ></FilterProvider> 
                       </div>
                     </div>
-                    <FilterTag></FilterTag>
+                    <FilterTag v-if="location!='library'"></FilterTag>
                 </div>
                 
               </div>
           </div>
           <ImageContainer></ImageContainer>
       </section>
-    </div>
 </template>
 <script>
 import FilterProvider from './components/FilterProvider';
 import FilterTag from './components/FilterTag';
 import ImageContainer from './components/ImageContainer';
+import SuccessErrorMessage from './components/SuccessErrorMessage';
    export default {
     
     data:function(){
            return {
-                providers:{}
+            location:'home'
            }
     },  
     mounted: function() {
-      // console.log(this.$el.attributes['data-providers'].value)
-
-      // this.providers =  JSON.parse(this.$el.attributes['data-providers'].value())
+      this.location=entry
     },
     components:{
       FilterProvider,
       ImageContainer,
-      FilterTag
+      FilterTag,
+      SuccessErrorMessage
     }
 
    }
 </script>
-<style type="text/css" scoped>
+<style type="text/css" >
 html,
 body,
 .intro {
@@ -60,5 +61,8 @@ body,
 .input-group>.form-control:focus {
   border-color: transparent;
   box-shadow: inset 0 0 0 1px transparent;
+}
+.bookmarked{
+  border:17px #927272 solid
 }
 </style>

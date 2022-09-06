@@ -29,7 +29,6 @@ class ImageController extends AbstractController
     #[Route('/upload/manual/', name: 'image_upload_manual')]
     public function uploadManual(Request $request): Response
     {
-    	
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $image=new Images();
         $form=$this->createForm(ImageUploadType::class,$image);
@@ -49,7 +48,8 @@ class ImageController extends AbstractController
                      }
 
                      catch(FileException $e){
-                        return new Response($e->getMessage());
+                       $this->addFlash('error',$e->getMessage());
+                       return $this->redirectToRoute('image_upload_manual');
                      }
                 }
                 $newImage->setImageName($newFileName);
@@ -92,10 +92,12 @@ class ImageController extends AbstractController
 
             }
             catch(Exception $e){
-                return new Response($e->getMessage());
+              $this->addFlash('error',$e->getMessage());
+               return $this->redirectToRoute('image_upload_url');
             }
             catch(FileException $e){
-                return new Response($e->getMessage());
+                $this->addFlash('error',$e->getMessage());
+               return $this->redirectToRoute('image_upload_url');
             }
             $newImage->setImageName($newFileName);
             $this->em->persist($newImage);

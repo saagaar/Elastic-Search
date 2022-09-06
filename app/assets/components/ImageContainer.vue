@@ -1,8 +1,10 @@
 <template>
  	<infinite-scroll @infinite-scroll="infiniteHandler" :message="message" :noResult="noResult">
  		<div class="row" >
-
-   			 <ImageCard v-if="allImages && allImages.length>0" v-for="(eachImages,index) in allImages" :key="index"  :images="eachImages" ></ImageCard> 
+   			 <ImageCard v-if="allImages && allImages.length>0" v-for="(eachImages,index) in allImages" :key="index"  :images="eachImages" @removeFromLibrary="removeBookmarkedChildHandler" ></ImageCard> 
+         <div v-else>
+           {{(pageType=='library')?'Library is Empty!!':'Please enter search query(at least 3 words)!!'}}
+         </div>
 		</div>
 
     </infinite-scroll>
@@ -27,11 +29,14 @@ export default {
       allImages:[],
       filters:[],
       noResult: false,
-      // message:'Data Fetch Complete'
+      message:'',
+      pageType:'home'
     };
   },
-  mounted() {
-  },
+ mounted(){
+  this.allImages=libraryImages
+  this.pageType=entry
+ },
  computed:
      {
         
@@ -60,24 +65,26 @@ export default {
  
   methods: {
            async infiniteHandler(){
-		      try {
-		      	this.page++;
-		      	let tag=(this.$store.getters.filterParams.tags===undefined)?'':(this.$store.getters.filterParams.tags)
-		              let provider=(this.filterParams['provider']===undefined)?'':(this.filterParams['provider'])
-		              let url=config.ROOT_URL+'api/search/?tag='+tag+'&provider='+provider+'&page='+this.page;
-				        const result = await this.axios(url)
-				        if(result.data.data.length) {
-				          this.allImages.push(...result.data.data);
-				        } 
-				        else {
-				          this.noResult= true
-				          this.$store.commit('SETFLASHMESSAGE',{status:false,message:'No Result Found'});
-				        }
-			      } catch(e) {
-			        this.$store.commit('SETFLASHMESSAGE',{status:false,message:e.message});
-			      }
-		    }
-         
+    		      try {
+    		      	this.page++;
+    		      	let tag=(this.$store.getters.filterParams.tags===undefined)?'':(this.$store.getters.filterParams.tags)
+    		              let provider=(this.filterParams['provider']===undefined)?'':(this.filterParams['provider'])
+    		              let url=config.ROOT_URL+'api/search/?tag='+tag+'&provider='+provider+'&page='+this.page;
+    				        const result = await this.axios(url)
+    				        if(result.data.data.length) {
+    				          this.allImages.push(...result.data.data);
+    				        } 
+    				        else {
+    				          this.noResult= true
+    				          // this.$store.commit('SETFLASHMESSAGE',{status:false,message:'No Result Found'});
+    				        }
+    			      } catch(e) {
+    			        this.$store.commit('SETFLASHMESSAGE',{status:false,message:e.message});
+    			      }
+		     },
+         removeBookmarkedChildHandler(value){
+           this.allImages.splice(value, 1)
+         }
  		 }
  
 }

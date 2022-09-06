@@ -3,7 +3,15 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-  
+	<h1>Home</h1>
+	<script>
+	    const libraryImages=JSON.parse('{{ [] | json_encode}}')
+	     const providers = JSON.parse('{{ providersData|json_encode()|raw }}')
+	     const entry='home';
+	</script>
+	<div id="app"  >
+			
+ 	</div>
 {% endblock %}
   
    

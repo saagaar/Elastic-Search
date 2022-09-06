@@ -29,7 +29,7 @@
                filter['tags']='';
                this.$store.commit('UPDATE_FILTER_PARAMS',filter);
              }
-          }
+    }
    }
  }
 </script>
