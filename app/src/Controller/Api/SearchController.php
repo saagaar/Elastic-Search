@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use ApiPlatform\Core\Annotation\ApiResource;
 use FOS\ElasticaBundle\Repository;
-
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 
 
@@ -17,7 +16,6 @@ class SearchController extends AbstractFOSRestController
 	protected $container;
 	private $serializer;
    
-     
     #[Route('/api/search/', name: 'app_api_search_api')]
     public function search(ImagesRepository	 $images,Request $request)
     {

@@ -2,6 +2,9 @@ controllers:
     resource: ../src/Controller/
     type: attribute
 
-fos_rest:
-    routing_loader:
-        default_format: json
+# fos_rest:
+    # routing_loader: false
+    # param_fetcher_listener:  true
+    # allowed_methods_listener:  true
+    # view:
+    #   view_response_listener:  true
