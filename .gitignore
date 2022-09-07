@@ -43,7 +43,8 @@
 # Assets and user uploads
 /app/web/bundles/
 /app/web/uploads/
-
+/app/.DS_Store
+.DS_Store
 # PHPUnit
 /app/phpunit.xml
 /app/phpunit.xml

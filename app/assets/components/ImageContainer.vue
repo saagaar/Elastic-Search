@@ -20,9 +20,6 @@ import InfiniteScroll from "infinite-loading-vue3";
 import config from './../config/config.js';
 import ImagePlaceHolder  from './../ContentPlaceholder/ImagePlaceholder';
 export default {
-  props:{
-
-  },
   components: {
     InfiniteScroll,
     ImageCard,
@@ -44,7 +41,6 @@ export default {
  },
  computed:
      {
-        
         filterParams:function(){
            return this.$store.getters.filterParams
         },
@@ -79,13 +75,11 @@ export default {
                   this.noResult= true;
                   return false;
                 }
-
-    		      
     		      	let tag=(this.$store.getters.filterParams.tags===undefined)?'':(this.$store.getters.filterParams.tags)
     		              let provider=(this.filterParams['provider']===undefined)?'':(this.filterParams['provider'])
     		              let url=config.ROOT_URL+'api/search/?tag='+tag+'&provider='+provider+'&page='+this.page;
     				        const result = await this.axios(url)
-    				        if(result.data.data.length) {
+    				        if(result.data.data.length>0) {
                       this.page++;
     				          this.allImages.push(...result.data.data);
                       this.$store.commit('TOGGLE_LOADING');

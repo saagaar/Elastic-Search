@@ -10,7 +10,7 @@ fos_elastica:
                 model: App\Entity\Images
                 provider: ~
                 finder: ~
-                repository: \AppBundle\Repository\ImagesRepository
+                repository: \App\Repository\ImagesRepository
               properties:
                 tagName: ~
                 imageName: ~

@@ -1,31 +1,38 @@
 <?php
+
 namespace App\Controller\Api;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\ImagesRepository;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use ApiPlatform\Core\Annotation\ApiResource;
-use FOS\ElasticaBundle\Manager\RepositoryManager;
 use FOS\ElasticaBundle\Repository;
 
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 
-#[ApiResource]
-class SearchController extends AbstractController 
+
+class SearchController extends AbstractFOSRestController
 {
 
 	protected $container;
 	private $serializer;
-  
+   
+     
     #[Route('/api/search/', name: 'app_api_search_api')]
-    public function index(ImagesRepository	 $images,Request $request): JsonResponse
+    public function search(ImagesRepository	 $images,Request $request)
     {
-    	$data=$images->elasticSearchQuery($request);
-		return $this->json(
-            ['status'=>true,'message'=>'Data Fetched Successfully','data'=>$data],
-            headers: ['Content-Type' => 'application/json;charset=UTF-8']
-        );	
+        try{
+            $data=$images->elasticSearchQuery($request);
+            $response=['status'=>true,'message'=>'Data Fetched Successfully','data'=>$data];
+            $view = $this->view($response, 200);
+                        $view->setFormat('json');
+            return $this->handleView($view);
+        }
+        catch(Exception $e){
+            throw $e;
+        }
+    	
+		
 		
     }
 }
