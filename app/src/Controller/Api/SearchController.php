@@ -9,16 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use ApiPlatform\Core\Annotation\ApiResource;
 use FOS\ElasticaBundle\Manager\RepositoryManager;
 use FOS\ElasticaBundle\Repository;
-use Pagerfanta\Adapter\FixedAdapter;
-use Symfony\Component\Serializer\SerializerInterface;
-use \Indaxia\OTR\Traits\Transformable;
-// use Symfony\Component\Serializer\Serializer;
 
-
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 #[ApiResource]
 class SearchController extends AbstractController 
