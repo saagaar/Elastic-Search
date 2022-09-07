@@ -1,11 +1,11 @@
 <template>
-
       <section class="text-center">
-        <SuccessErrorMessage></SuccessErrorMessage>
 
-         <div class="card card" style="background-color:#e1e1e1">
+        <SuccessErrorMessage></SuccessErrorMessage>
+         <div class="card card" style="background-color:#e1e1e1" v-if="location=='home'">
               <div class="card-header">
                 <div class="row">
+
                     <div class="col-md-4 col-lg-3">
                       <div class="select-wrapper" v-if="location!='library'">
                         <FilterProvider ></FilterProvider> 
@@ -17,6 +17,7 @@
               </div>
           </div>
           <ImageContainer></ImageContainer>
+           
       </section>
 </template>
 <script>

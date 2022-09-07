@@ -20,7 +20,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 
-
 class ImageUploadType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

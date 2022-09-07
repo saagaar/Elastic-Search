@@ -12,6 +12,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -19,6 +21,8 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email',EmailType::class,[
+                'label'=>false,
+                 'attr' => ['placeholder' => 'Enter Email','class' => 'form-control form-control-lg','id'=>'typeEmailX-2'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please Enter Email!',
@@ -27,17 +31,40 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label'=>false,
+                 'attr'=>['class'=>'form-check-input','id'=>"form1Example3"],
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
             ])
+            ->add('roles', CollectionType::class, [
+                 'entry_type' => ChoiceType::class,
+                 'label'=>false,
+                 'label_format'=>null,
+                 'entry_options'  => [  
+                     'choices' => [
+                        'Select'=>'',
+                       'ROLE_ADMIN'=>"ROLE_ADMIN",
+                       'ROLE_USER'=>"ROLE_USER"
+                     ],
+                     'label'=>false,
+                     'attr'=>['class'=>'form-control ']
+
+                    ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'You should Select one Role.',
+                    ]),
+                ],
+            ])
             ->add('plainPassword', PasswordType::class, [
+                'label'=>false,
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => ['autocomplete' => 'new-password','class'=>'form-control form-control-lg'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',

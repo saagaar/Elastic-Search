@@ -3,59 +3,71 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+<section class="" >
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+        <form method="post">
+          <div class="card-body p-5 text-center">
 
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+            <h3 class="mb-5">Sign in</h3>
+                {% if error %}
+                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
 
-    <div class="w-4/5 m-auto text-center">
-        <div class="py-12 border-b border-gray-200">
-            <h1 class="text-6xl pt-12 pb-8">
-                Login
-            </h1>
-    
-            <input 
+            <div class="form-outline mb-4">
+                <input 
                 type="email" 
                 value="{{ last_username }}" 
                 name="email" 
-                id="inputEmail" 
-                class="bg-transparent block mt-10 mx-auto border-b-2 w-1/5 h-20 text-2xl outline-none" 
+                id="typeEmailX-2"
+                class="form-control form-control-lg" 
                 placeholder="Email"
                 autocomplete="email" 
                 required 
                 autofocus
             >
+              <label class="form-label" for="typeEmailX-2">Email</label>
+            </div>
 
-            <input 
+            <div class="form-outline mb-4">
+               <input 
                 type="password" 
                 name="password" 
-                id="inputPassword" 
-                class="bg-transparent block mt-10 mx-auto border-b-2 w-1/5 h-20 text-2xl outline-none" 
+                id="typePasswordX-2" 
+                class="form-control form-control-lg" 
                 autocomplete="current-password" 
                 placeholder="Password"
                 required
             >
+             <label class="form-label" for="typePasswordX-2">Password</label>
+            </div>
 
             <input 
                 type="hidden" 
                 name="_csrf_token"
                 value="{{ csrf_token('authenticate') }}"
             >
-                    <input type="hidden" name="_target_path" value="/admin/dashboard"/>
+            <input type="hidden" name="_target_path" value="/admin/dashboard"/>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+            <hr class="my-4">
 
-            <button 
-                class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg w-1/5 mt-10 font-extrabold py-4 px-8 rounded-3xl" 
-                type="submit">
-                Sign in
-            </button>
+            <a href="/{{('register')}}" class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;"
+              type="submit"><i class="fab fa-google me-2"></i> Register</a>
+
+          </div>
+        </div>
         </form>
+      </div>
     </div>
-</div>
+  </div>
+</section>
+
 {% endblock %}

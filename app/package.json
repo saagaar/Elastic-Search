@@ -28,6 +28,9 @@
         "infinite-loading-vue3": "^1.0.1",
         "mdb-ui-kit": "^5.0.0",
         "vue-axios": "^3.4.1",
+        "vue-content-loader": "^2.0.1",
+        "vue-lazyload": "^3.0.0-rc.2",
+        "vue-progressive-image": "^4.0.0-beta.10",
         "vuex": "^4.0.2"
     }
 }

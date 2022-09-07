@@ -1,28 +1,56 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Register{% endblock %}
-
 {% block body %}
-    <div class="w-4/5 m-auto text-center">
-        <div class="py-12 border-b border-gray-200">
-            <h1 class="text-6xl pt-12 pb-8">
-                Register
-            </h1>
+        <section>
+              <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                  <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    {{ form_start(registrationForm) }}
+                      <div class="card-body p-5 text-center">
 
-            {{ form_start(registrationForm) }}
-                {{ form_row(registrationForm.email) }}
-                {{ form_row(registrationForm.plainPassword) }}
-            
-            {{ form_row(registrationForm.agreeTerms) }}
-            
-            <button 
-                type="submit" 
-                class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg w-1/5 mt-10 font-extrabold py-4 px-8 rounded-3xl">
-                Register
-            </button>
-            
-            {{ form_end(registrationForm) }}
+                        <h3 class="mb-5">Register</h3>
 
-        </div>
-    </div>
+                        <div class="form-outline mb-4">
+                          {{ form_widget(registrationForm.email) }}
+                          <label class="form-label" for="typeEmailX-2">Email</label>
+                          <div class="form-error">
+                                {{ form_errors(registrationForm.email) }}
+                           </div>
+                        </div>
+                        <div class="form-outline mb-4">
+                             {{ form_widget(registrationForm.plainPassword) }}
+
+                          <label class="form-label" for="typePasswordX-2">Password</label>
+                          {{ form_errors(registrationForm.plainPassword) }}
+                        </div>
+                         <div class="form-outline mb-4">
+                             {{ form_row(registrationForm.roles) }}
+                              {{ form_errors(registrationForm.roles) }}
+                        </div>
+                        <!-- Checkbox -->
+                        <div class="form-check d-flex justify-content-start mb-4">
+                          {{ form_widget(registrationForm.agreeTerms) }}
+                          <label class="form-check-label" for="form1Example3"> Accept Terms </label>
+                           {{ form_errors(registrationForm.agreeTerms) }}
+                        </div>
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
+                        <hr class="my-4">
+                        <a href="/{{('login')}}" class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;"
+                          type="submit"><i class="fab fa-google me-2"></i> Login</a>
+                      </div>
+                      {{ form_end(registrationForm) }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+</section>
+                
+               
+                
+               
+            
+            
+            
+            
+
 {% endblock %}

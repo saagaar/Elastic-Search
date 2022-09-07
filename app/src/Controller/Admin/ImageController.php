@@ -16,6 +16,9 @@ use App\Entity\Images;
 use App\Form\ImageUploadType;
 use App\Form\ImageExtractType;
 use App\Services\ImageOptimizer;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
+use Liip\ImagineBundle\Imagine\Data\DataManager;
+use Liip\ImagineBundle\Imagine\Filter\FilterManager;
 
 class ImageController extends AbstractController
 {
@@ -27,7 +30,7 @@ class ImageController extends AbstractController
 
     //Upload image by file upload
     #[Route('/upload/manual/', name: 'image_upload_manual')]
-    public function uploadManual(Request $request): Response
+    public function uploadManual(Request $request,CacheManager $cache,DataManager $data,FilterManager $filter): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $image=new Images();
@@ -43,10 +46,13 @@ class ImageController extends AbstractController
                 $image=$form->get('image_attachment')->getData();
                 if($image){
                      $newFileName=uniqid().'-'.time().'.'.$image->guessExtension();
+                     $originalImageDir=$dir.'original/';
+                  
                      try{
-                        $image->move($dir,$newFileName);
+                        $image->move($originalImageDir,$newFileName);
+                        $imageService=new ImageOptimizer();
+                        $thumbnail=$imageService->resize($dir,$originalImageDir,$newFileName);
                      }
-
                      catch(FileException $e){
                        $this->addFlash('error',$e->getMessage());
                        return $this->redirectToRoute('image_upload_manual');

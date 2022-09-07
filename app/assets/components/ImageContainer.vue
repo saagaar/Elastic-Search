@@ -1,27 +1,32 @@
 <template>
- 	<infinite-scroll @infinite-scroll="infiniteHandler" :message="message" :noResult="noResult">
+ 	<infinite-scroll @scroll.prevent @infinite-scroll="infiniteHandler">
  		<div class="row" >
    			 <ImageCard v-if="allImages && allImages.length>0" v-for="(eachImages,index) in allImages" :key="index"  :images="eachImages" @removeFromLibrary="removeBookmarkedChildHandler" ></ImageCard> 
+         <div v-else-if="noResult==false" v-html="displayMessage">
+         </div>
          <div v-else>
-           {{(pageType=='library')?'Library is Empty!!':'Please enter search query(at least 3 words)!!'}}
+          <hr>
+           <h4>No Result Found</h4><span >It's a fuzzy search so please find word closer to term you are looking.</span>
          </div>
 		</div>
-
+    <div v-if="this.$store.getters.isLoading==true">
+            <ImagePlaceHolder></ImagePlaceHolder>
+     </div>
     </infinite-scroll>
 </template>
 <script>
 import ImageCard from './ImageCard';
 import InfiniteScroll from "infinite-loading-vue3";
 import config from './../config/config.js';
-
+import ImagePlaceHolder  from './../ContentPlaceholder/ImagePlaceholder';
 export default {
   props:{
-    // universities:{type:Array,default: function () { return [] }}
 
   },
   components: {
     InfiniteScroll,
-    ImageCard
+    ImageCard,
+    ImagePlaceHolder
   },
   data(){
     return {
@@ -48,6 +53,9 @@ export default {
         },
         rootUrl:function(){
            return this.$config.ROOT_URL
+        },
+        displayMessage:function(){
+          return (this.pageType=='library')?'<h4>Library is Empty!!</h4>Please go to <a href="/">Home</a> and Add to your library':'Please enter search query(at least 3 words). Fuzzy search !!'
         }
      },
   watch:{
@@ -58,6 +66,7 @@ export default {
 	        this.noResult= false,
 	        this.allImages=[];
 	        this.infiniteHandler();
+          this.$store.commit('TOGGLE_LOADING');
     	},
     	deep:true
 	}
@@ -66,19 +75,28 @@ export default {
   methods: {
            async infiniteHandler(){
     		      try {
-    		      	this.page++;
+                if(this.pageType=='library') {
+                  this.noResult= true;
+                  return false;
+                }
+
+    		      
     		      	let tag=(this.$store.getters.filterParams.tags===undefined)?'':(this.$store.getters.filterParams.tags)
     		              let provider=(this.filterParams['provider']===undefined)?'':(this.filterParams['provider'])
     		              let url=config.ROOT_URL+'api/search/?tag='+tag+'&provider='+provider+'&page='+this.page;
     				        const result = await this.axios(url)
     				        if(result.data.data.length) {
+                      this.page++;
     				          this.allImages.push(...result.data.data);
+                      this.$store.commit('TOGGLE_LOADING');
     				        } 
     				        else {
+                      this.$store.commit('TOGGLE_LOADING');
     				          this.noResult= true
     				          // this.$store.commit('SETFLASHMESSAGE',{status:false,message:'No Result Found'});
     				        }
     			      } catch(e) {
+                  this.$store.commit('TOGGLE_LOADING');
     			        this.$store.commit('SETFLASHMESSAGE',{status:false,message:e.message});
     			      }
 		     },

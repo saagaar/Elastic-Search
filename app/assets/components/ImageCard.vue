@@ -1,8 +1,8 @@
 <template>
- <div class="col-lg-3 col-md-12 mb-4" v-if="images "  @click="bookmarkThisImage">
+ <div class="col-lg-3 col-md-12 mb-4" v-if="images"  @click="bookmarkThisImage">
     <div :class="'card '">
       <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-        <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" :class="'img-fluid '+bookmarkClass " />
+        <img :src="uploadUrl+'images/'+thisImage.provider+'/thumbnail/'+thisImage.image" :class="'img-fluid '+bookmarkClass " />
         <a href="#!">
           <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
         </a>
@@ -26,6 +26,12 @@ import config from './../config/config.js';
         thisImage:this.images,
         messsage:''
        }
+    },
+    computed:
+     {
+        uploadUrl:function(){
+           return config.UPLOAD_URL
+        },
     },
     mounted(){
       if(entry=='library'){

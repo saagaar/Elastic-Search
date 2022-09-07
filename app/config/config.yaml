@@ -6,12 +6,13 @@ fos_elastica:
         app:
             tag:
               persistance:
-                 driver: orm
-                 model: App\Entity\Images
-                 provider: ~
-                 finder: ~
-                 repository: \AppBundle\Repository\ImagesRepository
+                driver: orm
+                model: App\Entity\Images
+                provider: ~
+                finder: ~
+                repository: \AppBundle\Repository\ImagesRepository
               properties:
                 tagName: ~
                 imageName: ~
-                provider: ~                 
+                provider: ~           
+
