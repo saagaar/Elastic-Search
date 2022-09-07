@@ -48,7 +48,7 @@
 # PHPUnit
 /app/phpunit.xml
 /app/phpunit.xml
-
+/app/.DS_Store
 # Build data
 /app/build/
 
