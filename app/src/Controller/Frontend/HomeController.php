@@ -17,14 +17,12 @@ class HomeController extends AbstractController
     #[Route('/', name: 'frontend_home')]
     public function index(ProvidersRepository $provider): Response
     {
-         foreach(glob('/public/images/') as $file) {
-            print_r($file);exit;
-        }
-        // $allProviders=$provider->findAllProviders();
-        // return $this->render('frontend/home/index.html.twig', [
-        //     'controller_name' => 'HomeController',
-        //     'providersData'=>$allProviders
-        // ]);
+       
+        $allProviders=$provider->findAllProviders();
+        return $this->render('frontend/home/index.html.twig', [
+            'controller_name' => 'HomeController',
+            'providersData'=>$allProviders
+        ]);
     }
      #[Route('api/bookmark/',methods:['GET'], name: 'bookmark_image')]
     public function bookmarkImage(Request $request,ImagesRepository $images,EntityManagerInterface $em)
