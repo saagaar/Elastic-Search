@@ -52,6 +52,8 @@ docker  exec -it php81-container  ./bin/console fos:elastica:populate
 ```
 The last fixtures loaded through doctrine in  database (Mysql) ,will be initially synchronized to **Elastic search** Database
 
+Now you can get access the app using http://127.0.0.1:8080/ . 
+
 ## Description on Solutions
 Since one of the main objective of this task is to design architecture of the application which can support  millions of images and autocomplete search. Though working on the architecture can be seen through various perspectives and the requirement dependens upon a lots of different use cases.  
 Here I have given my overview on What I have currently worked on and some description on  how we can work to scale up:
