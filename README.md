@@ -74,7 +74,7 @@ When data is low in volume, there is not much difference in the system performan
 
 #### Application/Backend
 Following optimization is used: 
-1. Implemented code to communicate with Elastic search API and indexed to meet our need and also implemented fuzzy search method.
+1. Implemented code to communicate with Elastic search API and  implemented fuzzy search method on elastic search database.
 2. Image storage can be a lot trouble in handling since they can be very large in size. Inserting Images into database is not a solution so we have saved the database in local storage and their indexes are saved in the database. 
 3. Since we don't require the full sized image to be downloaded from server when displaying them so to make image light ,we  instead of saving only the original image ,we make two copies of images to save .i.e thumbnail (which is automatically resized) that is enough to display in our search and another the original image (if in case we need). Although the disk size increases and cost increases with two copies of each but today in the world disk space is a lot cheaper then bandwidth ,So we use multiple copies  to resize automatically when uploading.
 4. Another problem what we addressed is that we have logically distributed the image into different folders instead of saving into a same folder.  To reduce the time that application looks up for searching 200million  images into same folder is much higher so we have separated the images folder so whenever we need a image we look up direct into the folder where application can search in much less time. 
