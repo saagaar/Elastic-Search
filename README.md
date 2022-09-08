@@ -8,7 +8,7 @@ A small app which  demonstrates following features :
 * View and Remove Images in Personal Library
 
 **And a special Consideration:**
-From the task document itself
+From the task document :[https://docs.google.com/document/d/1OXEO18oECCsrbDHuyG_lO2ITLSDtWTLDGu7HMHxHeFE/edit]
 > Desygner offers close to 200 million images. Please make sure that the system you architect continues to function smoothly as it approaches such numbers of records.
 
 
@@ -31,8 +31,9 @@ Following steps are to be followed for installation:
 docker compose up --build
 ```
 
-Until this point all the servers are now up and running . Please verify if docker is running. If failed 
-Now you will have to follow some more steps to configure run time data like migrations and seeding 
+Until this point all the servers are now up and running . Please verify if docker is running. If failed Please try again with above code. After successfully docker setup is completed you can run these commands on your root of project:
+
+Now you will have to follow some more steps to configure run time data  migrations and seeding 
 
  
 ```bash
