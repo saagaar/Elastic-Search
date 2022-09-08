@@ -106,3 +106,22 @@ Following Optimization can be made:
 
 With these techniques even integrating more servers horizontally or vertically  can assist on the performance of the application. More over the requirement can vary and none techniques are perfect for any cases. So We can understand ,experiment and learn today for improving applications  to run for tomorrow. 
 
+We have by default inserted two users: for easy access
+
+Admin : admin@gmail.com , Password : 123456
+
+User: test@gmail.com, Password : 123456
+
+
+Following are the screenshots and videos for clear understanding of how it works
+
+**Home Page**
+![Uploading Hello-HomeController-.png…]()
+
+**Home Page with adding and removing Bookmarks**
+![Hello-HomeController-2](https://user-images.githubusercontent.com/8054507/189145229-462fca9c-e635-4d4f-8b5b-d61eceb1ea89.png)
+
+**Home page with search Tag** 
+![Hello-HomeController-4](https://user-images.githubusercontent.com/8054507/189145459-1a5b16a8-79f5-40dc-860b-69de45f5d78d.png)
+
+
