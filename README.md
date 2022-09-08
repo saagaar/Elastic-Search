@@ -114,30 +114,31 @@ User: test@gmail.com, Password : 123456
 
 API for search  : http://127.0.0.1:8080/api/search/?tag=apache&provider=pixorial&limit=20&page=1 
 where the  page=1 will be the starting and will display corresponding 20 images  and so on.
+The root url will be based on your setup environment.
 
 Following are the screenshots and videos for clear understanding of how it works
 
 
-**Home Page with adding and removing Bookmarks**
+####Home Page with adding and removing Bookmarks
 ![Hello-HomeController-2](https://user-images.githubusercontent.com/8054507/189145229-462fca9c-e635-4d4f-8b5b-d61eceb1ea89.png)
 
-**Home page with search Tag** 
+####Home page with search Tag
 ![Hello-HomeController-4](https://user-images.githubusercontent.com/8054507/189145459-1a5b16a8-79f5-40dc-860b-69de45f5d78d.png)
 
-**Personal Library**
+####Personal Library
 ![Hello-HomeController-5](https://user-images.githubusercontent.com/8054507/189145932-b18f9b13-3596-436c-bf8d-677a7511ff65.png)
 
-**Signin and Registration**
+####Signin and Registration
 ![Log-in-](https://user-images.githubusercontent.com/8054507/189146110-6f18e113-d0e3-405a-9899-183cf0d23684.png)
 
-**Upload Image by Image URL**
+####Upload Image by Image URL
 ![Upload-from-Source-URL-](https://user-images.githubusercontent.com/8054507/189146300-cb3abd7d-bb65-4aec-8c66-81de2f2b170f.png)
 
-**Upload Image Manually from local storage**
+####Upload Image Manually from local storage
 ![Manual-Upload-](https://user-images.githubusercontent.com/8054507/189146439-be0f3901-89b6-440f-8b28-0fbeeeacdffb.png)
 
 
-**For more details please check the video**
+###For more details please check the video
 
 https://user-images.githubusercontent.com/8054507/189146599-54a30f9a-b71c-4584-8d65-06cf3715fc6d.mp4
 
