@@ -114,7 +114,7 @@ User: test@gmail.com, Password : 123456
 
 API for search  : http://127.0.0.1:8080/api/search/?tag=apache&provider=pixorial&limit=20&page=1 
 where the  page=1 will be the starting and will display corresponding 20 images  and so on.
-The root url will be based on your setup environment.
+The root url will be based on your setup environment. Also I will add the POSTMAN collection for API with email
 
 Following are the screenshots and videos for clear understanding of how it works
 
