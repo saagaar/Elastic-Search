@@ -35,7 +35,7 @@ Until this point all the servers are now up and running . Please verify if docke
 
 First we need to run Composer
 ```bash
-docker  exec -it php81-container composer install 
+docker  exec -it php81-container composer install  --no-interaction
 ```
 Now you will have to follow some more steps to configure run time data  migrations and seeding 
  
