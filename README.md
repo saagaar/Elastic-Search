@@ -88,7 +88,7 @@ Elastic Search provides its own REST API so it could be much quicker to use .
 
 
 #### Application/Backend
-Following optimization is used: 
+Following optimization can be made:
 1. We can use AWS services like S3 to make storage and reterival quicker
 2. Using CDN to improve image delivery can help 
 3. Dynamic image resize with cache optimization can be more flexible then to store millions of images as thumbnail as our implementation with condition that It can lead to high requirement of processing power ,which depends on various cases like number of concurrent user and so on.
