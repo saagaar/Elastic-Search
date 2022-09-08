@@ -85,30 +85,17 @@ Though because of time and various other constraints we couldn't implement all o
 * **Elastic Search**
 Elastic Search provides its own REST API so it could be much quicker to use . 
 
-##### How it works
-In the system , although source of truth is maintained for Mysql database but all data are Indexed to Elastic search server as well. So we used Elastic server as secondary storage to use it to  search data as search engine, where we store all the possible search columns and index them as per the need. 
-
-When data is low in volume, there is not much difference in the system performance whatever database we use but at large data and huge volumes of data elastic searches has incredibly fast  data search capacity in relation to relational database which will be used in for searches. Hence this can help us gain significant speed in terms of search. 
 
 #### Application/Backend
 Following optimization is used: 
-1. Image storage can be a lot trouble in handling since they can be very large in size. Inserting Images into database is not a solution so we have saved the database in local storage and their indexes are saved in the database. 
-2. Since we don't require the full sized image to be downloaded from server when displaying them so to make image light ,we  instead of saving only the original image ,we make two copies of images to save .i.e thumbnail (which is automatically resized) that is enough to display in our search and another the original image (if in case we need). Although the disk size increases and cost increases with two copies of each but today in the world disk space is a lot cheaper then bandwidth ,So we use multiple copies  to resize automatically when uploading.
-3. Another problem what we addressed is that we have logically distributed the image into different folders instead of saving into a same folder.  To reduce the time that application looks up for searching 200million  images into same folder is much higher so we have separated the images folder so whenever we need a image we look up direct into the folder where application can search in much less time. 
-
+1. We can use AWS services like S3 to make storage and reterival quicker
+2. Using CDN to improve image delivery can help 
+3. Dynamic image resize with cache optimization can be more flexible then to store millions of images as thumbnail as our implementation with condition that It can lead to high requirement of processing power ,which depends on various cases like number of concurrent user and so on.
+4. Load Balancer  can be used to horizontally scale the server .
+5. Some Image optimizer library or compression algorithm can be implemented
 #### Frontend 
-To speed up the search and experience in frontend , following things are done:
-1. Infinite Loading(type of pagination) i.e.  On demand Loading is implemented in search it can in one hand reduce the time to load and enhance user experience and in other hand help to save server bandwidth.
+Following Optimization can be made:  
+1. Progressive or Lazy loading feature can be added (Could not do because of time constraint)
+2. Separate frontend and application server
 
-Though because of time and various other constraints we cannot implement all of the things that can be done. I have tried to explain some other points that can be used to improve application performance.
-
-####
-* **Elastic Search**
-
- 
-Elastic search is used here for 
-1. The main feature  to make search fast is
-1. Frontend on Vue.js which is a progressive Javascript library .  
-
-2. 
-
+With these techniques even integrating more servers horizontally or vertically  can assist on the performance of the application. More over the requirement can vary and none techniques are perfect for any cases. So We can understand ,experiment and learn today for tomorrow. 
