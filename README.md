@@ -98,4 +98,4 @@ Following Optimization can be made:
 1. Progressive or Lazy loading feature can be added (Could not do because of time constraint)
 2. Separate frontend and application server
 
-With these techniques even integrating more servers horizontally or vertically  can assist on the performance of the application. More over the requirement can vary and none techniques are perfect for any cases. So We can understand ,experiment and learn today for tomorrow. 
+With these techniques even integrating more servers horizontally or vertically  can assist on the performance of the application. More over the requirement can vary and none techniques are perfect for any cases. So We can understand ,experiment and learn today for improving applications  to run for tomorrow. 
