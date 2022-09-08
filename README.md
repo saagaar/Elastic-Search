@@ -41,7 +41,7 @@ docker  exec -it php81-container ./bin/console doctrine:migrations:migrate --no-
 ```
 This command will simply run the migrations required
 ```bash
-docker  exec -it php81-container ./console doctrine:fixtures:load --no-interaction
+docker  exec -it php81-container ./bin/console doctrine:fixtures:load --no-interaction
 ```
 We run some fixtures or  seeds into database.
 ```bash
