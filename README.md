@@ -8,6 +8,7 @@ A small app which  demonstrates following features :
 * View and Remove Images in Personal Library
 
 **And a special Consideration:**
+From the task document itself
 > Desygner offers close to 200 million images. Please make sure that the system you architect continues to function smoothly as it approaches such numbers of records.
 
 
