@@ -12,12 +12,17 @@ use Symfony\Component\Security\Core\Security;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ImagesRepository;
 use App\Entity\Images;
+use App\Entity\Providers;
+use App\Entity\Tags;
+use Doctrine\Persistence\ManagerRegistry;
+
+use App\Services\ImageOptimizer;
+
+
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'frontend_home')]
-    public function index(ProvidersRepository $provider): Response
-    {
-       
+    public function index(ProvidersRepository $provider,ManagerRegistry $doctrine){   
         $allProviders=$provider->findAllProviders();
         return $this->render('frontend/home/index.html.twig', [
             'controller_name' => 'HomeController',

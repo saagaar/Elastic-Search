@@ -23,9 +23,9 @@ class ImageOptimizer
     {
         if(!is_dir($dir.self::THUMBNAIL_DIR))
              mkdir($dir.self::THUMBNAIL_DIR,0777,true);
-        if(!is_dir($dir.self::MINIMAL_DIR))
-             mkdir($dir.self::MINIMAL_DIR,0777,true);
-         // }
+        // if(!is_dir($dir.self::MINIMAL_DIR))
+        //      mkdir($dir.self::MINIMAL_DIR,0777,true);
+        //  // }
         list($iwidth, $iheight) = getimagesize($originalImgDir.$filename);
         $ratio = $iwidth / $iheight;
         $width = self::THUMBNAIL_MAX_WIDTH;
@@ -38,6 +38,6 @@ class ImageOptimizer
       
         $photo = $this->imagine->open($originalImgDir.$filename);
         $photo->resize(new Box($width, $height))->save($dir.self::THUMBNAIL_DIR.$filename);
-        $photo->resize(new Box(self::LOADER_WIDTH, self::LOADER_HEIGHT))->save($dir.self::MINIMAL_DIR.$filename);
+        // $photo->resize(new Box(self::LOADER_WIDTH, self::LOADER_HEIGHT))->save($dir.self::MINIMAL_DIR.$filename);
     }
 }

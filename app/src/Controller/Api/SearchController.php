@@ -12,7 +12,6 @@ use FOS\RestBundle\Controller\AbstractFOSRestController;
 
 class SearchController extends AbstractFOSRestController
 {
-
 	protected $container;
 	private $serializer;
    

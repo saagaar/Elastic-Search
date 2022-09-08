@@ -16,9 +16,6 @@ use App\Entity\Images;
 use App\Form\ImageUploadType;
 use App\Form\ImageExtractType;
 use App\Services\ImageOptimizer;
-use Liip\ImagineBundle\Imagine\Cache\CacheManager;
-use Liip\ImagineBundle\Imagine\Data\DataManager;
-use Liip\ImagineBundle\Imagine\Filter\FilterManager;
 
 class ImageController extends AbstractController
 {
