@@ -46,7 +46,10 @@ This command will simply run the migrations required
 ```bash
 docker  exec -it php81-container ./bin/console doctrine:fixtures:load --no-interaction
 ```
-We run some fixtures or  seeds into database.
+We run some fixtures or  seeds into database. Since database fixtures involves elastic server as we need to push them to elastic server, there are two things to consider about elastic server: 
+1. They take some more time to load even after all of servers are loaded . You can check the status from http://127.0.0.1:9200/ .
+2. Sometimes they hang up in the middle if you see some message like *Couldn;t connect to Host?* then this is probably elastic server failed to load. For the solution  of such problem first try to take the server down and again take up so it can load in a while.   If issues still is seen then docker might need to build again. 
+
 ```bash
 docker  exec -it php81-container  ./bin/console fos:elastica:populate
 ```
@@ -116,7 +119,17 @@ User: test@gmail.com, Password : 123456
 
 API for search  : http://127.0.0.1:8080/api/search/?tag=apache&provider=pixorial&limit=20&page=1 
 where the  page=1 will be the starting and will display corresponding 20 images  and so on.
-The root url will be based on your setup environment. Also I will add the POSTMAN collection for API with email
+The root url will be based on your setup environment. Also I will add the POSTMAN collection for API with email.
+For references: 
+```bash
+docker compose up
+```
+```bash
+docker compose down
+```
+This command is used to take the container up or down after once it is build . Though these commands are  not always needed but in case if container fails to load then these two commands can be useful
+
+
 
 Following are the screenshots and videos for clear understanding of how it works
 
