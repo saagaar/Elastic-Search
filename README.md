@@ -59,16 +59,25 @@ For database we have used two types of database server.
 The use of mysql (a relational database) is because of its property of ACID. Data integrity is major characteristics of relational database so we used Mysql to maintain relation among the data and as a source of truth.
 
 * **Elastic Search**
+
 Unlike Mysql, Elastic search is a unstructured database which stores data as a document . It is known for analytical database and a search engine with known for its  distributed nature, speed, and scalability.
 
 ##### How it works
-In the system , although source of truth is maintained for Mysql database but all data are Indexed to Elastic search server as well. So we use this data to make search where we store all the possible search columns and index them by various search method. 
+In the system , although source of truth is maintained for Mysql database but all data are Indexed to Elastic search server as well. So we used Elastic server as secondary storage to use it to  search data as search engine, where we store all the possible search columns and index them as per the need. 
 
-When data is in low volume, there is not much difference in the system whatever database we use but once data volume increases Elastic searches has incredibly fast  data search capacity. Hence this can help us gain significant speed in terms of search in frontend
+When data is low in volume, there is not much difference in the system performance whatever database we use but at large data and huge volumes of data elastic searches has incredibly fast  data search capacity in relation to relational database which will be used in for searches. Hence this can help us gain significant speed in terms of search. 
 
+#### Application/Backend
+Following optimization is used: 
+1. Image storage can be a lot trouble in handling since they can be very large in size. Inserting Images into database is not a solution so we have saved the database in local storage and their indexes are saved in the database. 
+2. Since we don't require the full sized image to be downloaded from server when displaying them so to make image light ,we  instead of saving only the original image ,we make two copies of images to save .i.e thumbnail (which is automatically resized) that is enough to display in our search and another the original image (if in case we need). Although the disk size increases and cost increases with two copies of each but today in the world disk space is a lot cheaper then bandwidth ,So we use multiple copies  to resize automatically when uploading.
+3. Another problem what we addressed is that we have logically distributed the image into different folders instead of saving into a same folder.  To reduce the time that application looks up for searching 200million  images into same folder is much higher so we have separated the images folder so whenever we need a image we look up direct into the folder where application can search in much less time. 
+To speed up the image loading in frontend , we can have multiple ways to handle file. Since files are stored on 
+Here in application to handle fast search we have ma
 
 ### What can be done in future
 ####
+* **Elastic Search**
 
  
 Elastic search is used here for 
