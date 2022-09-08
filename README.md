@@ -4,7 +4,7 @@ A small app which  demonstrates following features :
 * Admin can upload image either using Image url or file upload with multiple tags and providers
 * Open API 
 * Public Search (UI)
-* Add images to Private library (when logged in)
+* Add images to Personal library (when logged in)
 * View and Remove Images in Personal Library
 
 **And a special Consideration:**
