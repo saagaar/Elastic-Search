@@ -33,7 +33,7 @@ fos_elastica:
     #         model: App\Entity\Tags
     #         provider: ~
     #         finder: ~
-    # provider:
+    # providers:
     #     properties:
     #         provider_name: ~
     #         images: 

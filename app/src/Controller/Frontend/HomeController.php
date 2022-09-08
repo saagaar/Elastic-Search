@@ -63,7 +63,7 @@ class HomeController extends AbstractController
             $lib=[];
             if($allLibrary){
               foreach($allLibrary as $eachLibrary){
-                $lib[]=['image_id'=>$eachLibrary->getId(),'image'=>$eachLibrary->getImageName(),'provider'=>$eachLibrary->getProvider()->getId()];
+                $lib[]=['image_id'=>$eachLibrary->getId(),'image'=>$eachLibrary->getImageName(),'provider_id'=>$eachLibrary->getProvider()->getId()];
                }      
             }
             return $this->render('frontend/home/library.html.twig', [

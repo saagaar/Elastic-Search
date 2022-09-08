@@ -2,7 +2,7 @@
  <div class="col-lg-3 col-md-12 mb-4" v-if="images"  @click="bookmarkThisImage">
     <div :class="'card '">
       <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-        <img :src="uploadUrl+'images/'+thisImage.provider+'/thumbnail/'+thisImage.image" :class="'img-fluid '+bookmarkClass " />
+        <img :src="uploadUrl+'images/'+thisImage.provider_id+'/thumbnail/'+thisImage.image" :class="'img-fluid '+bookmarkClass " />
         <a href="#!">
           <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
         </a>

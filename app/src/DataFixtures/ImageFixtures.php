@@ -27,6 +27,8 @@ class ImageFixtures extends Fixture
         $pictures = glob($currentUrl."*.{jpg,jpeg,png,gif}", GLOB_BRACE);
 
         $em = $this->doctrine->getManager();
+
+        //GET max id
          $tag= $em->createQueryBuilder()
             ->select('e')
             ->from('App:Tags', 'e')
@@ -34,6 +36,15 @@ class ImageFixtures extends Fixture
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
+             //GET min id
+          $tagmi= $em->createQueryBuilder()
+            ->select('e')
+            ->from('App:Tags', 'e')
+            ->orderBy('e.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+             //GET max id of provider
         $provid = $em->createQueryBuilder()
             ->select('e')
             ->from('App:Providers', 'e')
@@ -41,14 +52,25 @@ class ImageFixtures extends Fixture
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
+             //GET min id of provider
+    	 $providmi = $em->createQueryBuilder()
+	        ->select('e')
+	        ->from('App:Providers', 'e')
+	        ->orderBy('e.id', 'ASC')
+	        ->setMaxResults(1)
+	        ->getQuery()
+	        ->getOneOrNullResult();
             $tagMax=($tag)?$tag->getId():0;
             $providerMax=($provid)?$provid->getId():0;
+            
+            $tagMin=($tagmi)?$tagmi->getId():0;
+            $providerMin=($providmi)?$providmi->getId():0;
             if($tagMax >0 && $providerMax>0){
             foreach($pictures as $eachPic){
                 $image=new Images();
-                $tag1 = mt_rand(1,$tagMax);
-                $tag2 = mt_rand(1,$tagMax);
-                $prov1=mt_rand(1,$providerMax);
+                $tag1 = mt_rand($tagMin,$tagMax);
+                $tag2 = mt_rand($tagMin,$tagMax);
+                $prov1=mt_rand($providerMin,$providerMax);
                 $image->addTag(
                     $em->getReference(Tags::class, $tag1)
                 );

@@ -27,7 +27,7 @@ class ImageController extends AbstractController
 
     //Upload image by file upload
     #[Route('/upload/manual/', name: 'image_upload_manual')]
-    public function uploadManual(Request $request,CacheManager $cache,DataManager $data,FilterManager $filter): Response
+    public function uploadManual(Request $request): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $image=new Images();

@@ -60,7 +60,8 @@ class ImagesRepository extends ServiceEntityRepository
             $boolQuery = new \Elastica\Query\BoolQuery();
             $tagQuery = new \Elastica\Query\SimpleQueryString($tag,['tags.tag_name']);
             $tagFuzzyQuery = new \Elastica\Query\Fuzzy('tags.tag_name',$tag);
-            $providerQuery = new \Elastica\Query\Term(['provider.provider_name'=>$provider]);
+            $providerQuery = new \Elastica\Query\Fuzzy(
+                'provider.provider_name',$provider);
             if($provider){
                 $boolQuery->addMust($providerQuery);
             }
@@ -74,9 +75,9 @@ class ImagesRepository extends ServiceEntityRepository
             $result = $finder->find($query);
             $data=[];
             foreach($result as $eachResult){
-                $data[]=['image'=>$eachResult->getImageName(),'image_id'=>$eachResult->getId(),'provider'=>$eachResult->getProvider()->getId()
+                $data[]=['image'=>$eachResult->getImageName(),'image_id'=>$eachResult->getId(),'provider'=>$eachResult->getProvider()->getProviderName(),'provider_id'=>$eachResult->getProvider()->getId()
                     ];
             }
-            return $data;
+           return $data;
          }  
 }
