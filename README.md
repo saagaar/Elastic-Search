@@ -145,4 +145,5 @@ Following are the screenshots and videos for clear understanding of how it works
 https://user-images.githubusercontent.com/8054507/189146599-54a30f9a-b71c-4584-8d65-06cf3715fc6d.mp4
 
 
-
+##### Thank you
+In case of any issues on running or setup or any question regarding the task please email @ saagarchapagain@gmail.com
