@@ -48,31 +48,16 @@ docker  exec -it php81-container  ./bin/console fos:elastica:populate
 The last fixtures loaded through doctrine in  database (Mysql) ,will be initially synchronized to **Elastic search** Database
 
 ## Description on Solutions
-As per
+Since one of the main objective of this task is to design architecture of the application which can support  millions of images and autocomplete search. Though working on the architecture can be seen through various perspectives and the requirement dependens upon a lots of different use cases.  
+Here I have given my overview on What I have currently worked on and some description on  how we can work to scale up:
 
+### What I implemented Here:
+#### DataBase
+For database we have used two types of database server. 
+1.  Mysql
 
-::: warn
-deprecated, do not use.
-:::
-## Usage
+1. The main feature  to make search fast is
+1. Frontend on Vue.js which is a progressive Javascript library .  
 
-```php
-import foobar
+2. 
 
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
-```
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
