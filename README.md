@@ -54,8 +54,24 @@ Here I have given my overview on What I have currently worked on and some descri
 ### What I implemented Here:
 #### DataBase
 For database we have used two types of database server. 
-1.  Mysql
+* **Mysql**
 
+The use of mysql (a relational database) is because of its property of ACID. Data integrity is major characteristics of relational database so we used Mysql to maintain relation among the data and as a source of truth.
+
+* **Elastic Search**
+Unlike Mysql, Elastic search is a unstructured database which stores data as a document . It is known for analytical database and a search engine with known for its  distributed nature, speed, and scalability.
+
+##### How it works
+In the system , although source of truth is maintained for Mysql database but all data are Indexed to Elastic search server as well. So we use this data to make search where we store all the possible search columns and index them by various search method. 
+
+When data is in low volume, there is not much difference in the system whatever database we use but once data volume increases Elastic searches has incredibly fast  data search capacity. Hence this can help us gain significant speed in terms of search in frontend
+
+
+### What can be done in future
+####
+
+ 
+Elastic search is used here for 
 1. The main feature  to make search fast is
 1. Frontend on Vue.js which is a progressive Javascript library .  
 
