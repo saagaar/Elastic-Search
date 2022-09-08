@@ -25,7 +25,7 @@ From the task document :[https://docs.google.com/document/d/1OXEO18oECCsrbDHuyG_
 
 Following steps are to be followed for installation:
 
-***Point your command line tool to the location of your folder***
+***Point your command line tool to the location of project folder***
 
 ```bash
 docker compose up --build
@@ -33,8 +33,11 @@ docker compose up --build
 
 Until this point all the servers are now up and running . Please verify if docker is running. If failed Please try again with above code. After successfully docker setup is completed you can run these commands on your root of project:
 
+First we need to run Composer
+```bash
+docker  exec -it php81-container composer install 
+```
 Now you will have to follow some more steps to configure run time data  migrations and seeding 
-
  
 ```bash
 docker  exec -it php81-container ./bin/console doctrine:migrations:migrate --no-interaction 
@@ -71,7 +74,7 @@ When data is low in volume, there is not much difference in the system performan
 
 #### Application/Backend
 Following optimization is used: 
-1. Implemented code to communicate with Elastic search API and indexed to meet our need
+1. Implemented code to communicate with Elastic search API and indexed to meet our need and also implemented fuzzy search method.
 2. Image storage can be a lot trouble in handling since they can be very large in size. Inserting Images into database is not a solution so we have saved the database in local storage and their indexes are saved in the database. 
 3. Since we don't require the full sized image to be downloaded from server when displaying them so to make image light ,we  instead of saving only the original image ,we make two copies of images to save .i.e thumbnail (which is automatically resized) that is enough to display in our search and another the original image (if in case we need). Although the disk size increases and cost increases with two copies of each but today in the world disk space is a lot cheaper then bandwidth ,So we use multiple copies  to resize automatically when uploading.
 4. Another problem what we addressed is that we have logically distributed the image into different folders instead of saving into a same folder.  To reduce the time that application looks up for searching 200million  images into same folder is much higher so we have separated the images folder so whenever we need a image we look up direct into the folder where application can search in much less time. 
@@ -88,7 +91,6 @@ Though because of time and various other constraints we couldn't implement all o
 * **Elastic Search**
 Elastic Search provides its own REST API so it could be much quicker to use . 
 
-
 #### Application/Backend
 Following optimization can be made:
 1. We can use AWS services like S3 to make storage and reterival quicker
@@ -96,9 +98,11 @@ Following optimization can be made:
 3. Dynamic image resize with cache optimization can be more flexible then to store millions of images as thumbnail as our implementation with condition that It can lead to high requirement of processing power ,which depends on various cases like number of concurrent user and so on.
 4. Load Balancer  can be used to horizontally scale the server .
 5. Some Image optimizer library or compression algorithm can be implemented
+
 #### Frontend 
 Following Optimization can be made:  
 1. Progressive or Lazy loading feature can be added (Could not do because of time constraint)
 2. Separate frontend and application server
 
 With these techniques even integrating more servers horizontally or vertically  can assist on the performance of the application. More over the requirement can vary and none techniques are perfect for any cases. So We can understand ,experiment and learn today for improving applications  to run for tomorrow. 
+
