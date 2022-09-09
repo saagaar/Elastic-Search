@@ -47,7 +47,7 @@ This command will simply run the migrations required
 docker  exec -it php81-container ./bin/console doctrine:fixtures:load --no-interaction
 ```
 We run some fixtures or  seeds into database. Since database fixtures involves elastic server as we need to push them to elastic server, there are two things to consider about elastic server: 
-1. They take some more time to load even after all of servers are loaded . You can check the status from http://127.0.0.1:9200/ .
+1. They can take some more time to load sometimes(as per experience), even after all of servers are loaded . You can check the status from http://127.0.0.1:9200/ .
 2. Sometimes they hang up in the middle if you see some message like *Couldn;t connect to Host?* then this is probably elastic server failed to load. For the solution  of such problem first try to take the server down and again take up so it can load in a while.   If issues still is seen then docker might need to build again. 
 
 ```bash
