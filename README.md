@@ -1,4 +1,4 @@
-# Project Task (For Desygner)
+# Project Task 
 A small app which  demonstrates following features :
 * Authentication Module(Login/Register) for admin and user
 * Admin can upload image either using Image url or file upload with multiple tags and providers
