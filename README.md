@@ -8,9 +8,7 @@ A small app which  demonstrates following features :
 * View and Remove Images in Personal Library
 
 **And a special Consideration:**
-From the task document :[https://docs.google.com/document/d/1OXEO18oECCsrbDHuyG_lO2ITLSDtWTLDGu7HMHxHeFE/edit]
-> Desygner offers close to 200 million images. Please make sure that the system you architect continues to function smoothly as it approaches such numbers of records.
-
+From the task document :[https://docs.google.com/document/d/e/2PACX-1vTGpeOTSDmhkKhRNFO_Nb19M201wSO6zpBLlucsh-Degq6V2FWtxAb0o03gnDWos3-zUxiA1sfRSZMr/pub]
 
 ### Tools and Technologies
 1. PHP (Symfony)
